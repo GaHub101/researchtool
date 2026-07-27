@@ -10,422 +10,491 @@ direkt vor der jeweiligen Umsetzung.
 
 ## 1. Leitgedanke
 
-**Das System begleitet, es kontrolliert nicht.**
+**Das System begleitet sanft durch zwei Jahre Forschungsarbeit.**
 
-Zielgruppe sind unerfahrene Forschende *und* unerfahrene Forschungsleitende. Beide
-brauchen keinen Wächter, der ihnen Knöpfe sperrt, sondern etwas, das ihnen zeigt,
-wie Forschung üblicherweise abläuft und woran man an ihrer Stelle als Nächstes
-denken würde.
+Es richtet sich an zwei Gruppen, die beide wenig Erfahrung mitbringen: an
+**Forschende**, die zum ersten Mal ein Projekt durchziehen, und an
+**Forschungsleitende**, die zum ersten Mal andere dabei betreuen. Beide brauchen
+keinen Wächter, sondern jemanden, der weiß, wie das üblicherweise läuft, und es
+im richtigen Moment sagt.
 
-Daraus folgt die durchgehende Gestaltungsregel:
+Die Gestaltungsregel durchgehend:
 
-> Das System **weiß**, wie ein Forschungsprojekt typischerweise läuft, und **sagt
-> es**. Entscheiden tun Menschen.
+> Das System **weiß**, wie ein Forschungsprojekt verläuft, und **sagt es**.
+> Entscheiden tun Menschen.
 
-Konkret heißt das:
+Daraus folgt:
 
-- **Nichts blockiert.** Es gibt keine gesperrten Knöpfe, keine erzwungene
-  Reihenfolge, keine Phase, die sich nicht abschließen lässt.
-- **Alles lässt sich überspringen.** Phasen dürfen parallel laufen, ausfallen
-  oder in anderer Reihenfolge stattfinden.
-- **Hinweise statt Fehlermeldungen.** Wo etwas fehlt oder ungewöhnlich aussieht,
-  steht ein ruhiger Satz, kein rotes Verbotsschild.
-- **Jeder Hinweis lässt sich wegklicken** — mit „passt so bei uns", und dann
-  kommt er nicht wieder. Ein Ratgeber, der sich nicht abstellen lässt, wird
-  ignoriert oder umgangen.
-- **Ein Projekt anzulegen kostet einen Titel.** Alles Weitere ist ergänzbar,
-  nichts ist Voraussetzung.
+- **Nichts blockiert.** Keine gesperrten Knöpfe, keine erzwungene Reihenfolge.
+- **Alles lässt sich überspringen**, parallel führen oder als „trifft nicht zu"
+  markieren.
+- **Hinweise statt Fehlermeldungen**, jeder einzeln wegklickbar mit „passt so bei
+  uns". Ein Ratgeber, der sich nicht abstellen lässt, wird umgangen — dann
+  arbeiten die Leute am System vorbei.
+- **Ein Projekt anzulegen kostet einen Titel und ein Startdatum.** Mehr nicht.
 
 Das Kompendium beschreibt in §9 und §10 ein streng regelgeführtes System mit
-Pflichtfeldern, Exit-Kriterien als Sperren und erzwungenen Freigaben. Dieser Plan
-übernimmt dessen **Fachwissen vollständig** — welche Phasen es gibt, was zu jeder
-gehört, wo die typischen Stolpersteine liegen — verwendet es aber als **Inhalt,
-nicht als Schranke**.
+Pflichtfeldern und erzwungenen Freigaben. Dieser Plan übernimmt dessen
+**Fachwissen vollständig**, verwendet es aber als **Inhalt, nicht als Schranke**.
 
 ---
 
-## 2. Die drei Schichten
+## 2. Zwei Stufen
 
-Das ganze System besteht aus drei Schichten, die klar auseinandergehalten werden.
+Dasselbe Projekt, zwei Blickwinkel. Die Trennung zieht sich durch die gesamte
+Oberfläche und durch die hinterlegten Texte.
+
+### Stufe 1 — Forschende
+
+**Frage:** *Wo stehe ich, und was mache ich als Nächstes?*
+
+Nah dran, ein Projekt im Blick. Sieht den eigenen Stand auf der Zeitachse, die
+Checkliste des aktuellen Abschnitts mit Erklärungen, die nächsten zwei bis drei
+sinnvollen Schritte. Kein Portfolio, keine Kennzahlen, keine Vergleiche mit
+anderen.
+
+### Stufe 2 — Forschungsleitung
+
+**Frage:** *Wie stehen meine Projekte, und wo sollte ich mich einmischen?*
+
+Von oben, mehrere Projekte nebeneinander. Sieht, welche Projekte sich länger
+nicht gemeldet haben, wo ein Abschnitt ungewöhnlich lange läuft, und — das ist
+der eigentliche Nutzen — **was sich im nächsten Gespräch zu besprechen lohnt**.
+
+Für eine unerfahrene Betreuung ist das der schwierigste Teil: zu wissen, worauf
+man bei einem Projekt in Monat 9 überhaupt schauen sollte. Genau dafür hat jeder
+Abschnitt einen hinterlegten Betreuungshinweis.
+
+### Technische Umsetzung
+
+Zwei Rechtesets, `Forschende` und `Forschungsleitung`, plus ein rein technisches
+Administrationskonto für Schema und Pflege der Texte. Der Unterschied liegt
+weniger in den Rechten als in den **Einstiegsseiten und den angezeigten Texten** —
+beide sehen dieselben Daten, aber nicht dieselbe Aufbereitung.
+
+Forschende können alle Projekte lesen. Abschottung würde dem Zweck
+widersprechen: voneinander abschauen ist beim ersten Projekt hilfreich.
+
+---
+
+## 3. Der Bogen über 24 Monate
+
+### 3.1 Fünf Abschnitte statt zwölf Phasen
+
+Der Vorhabentyp spielt keine Rolle. Statt verschiedener Vorlagen je Studiendesign
+gibt es **ein Modell für alles** — grob genug, dass es überall passt, mit feineren
+Schritten darunter, die sich einzeln abwählen lassen.
+
+| Abschnitt | Leitfrage | Monate |
+|---|---|---|
+| **1 Klären** | Was will ich herausfinden, und geht das überhaupt? | 1 – 4 |
+| **2 Planen** | Wie gehe ich vor, und darf ich das? | 4 – 9 |
+| **3 Sammeln** | Woher kommt mein Material? | 8 – 16 |
+| **4 Auswerten** | Was sagen die Daten? | 15 – 19 |
+| **5 Veröffentlichen** | Wer soll davon erfahren? | 18 – 24 |
+
+Die **Überlappungen sind Absicht**. In der Realität beginnt das Schreiben während
+der Auswertung, und die Literaturarbeit hört nie ganz auf. Die Zeitachse zeigt
+deshalb breite, ineinandergreifende Bänder, keine harten Grenzen.
+
+### 3.2 Die feineren Schritte
+
+Unter jedem Abschnitt liegen die Schritte aus §6.1 des Kompendiums. Jeder lässt
+sich als **„trifft nicht zu"** markieren und verschwindet dann still.
+
+| Abschnitt | Schritte |
+|---|---|
+| Klären | Themenidee · Machbarkeit · Literatur und Forschungslücke |
+| Planen | Vorgehensplan / Protokoll · Ethik und Datenschutz · Datensetup |
+| Sammeln | Material zusammentragen · laufende Qualitätskontrolle |
+| Auswerten | Bereinigen und Datenstand festhalten · Analyse |
+| Veröffentlichen | Manuskript · Einreichung und Überarbeitung · Abschluss und was ich gelernt habe |
+
+**Das ist die Antwort auf „passt für alles".** Eine systematische Übersichtsarbeit
+hakt „Ethik und Datenschutz" in zwei Sekunden als nicht zutreffend ab, eine
+prospektive Studie lässt ihn stehen. Beide arbeiten im selben Modell, ohne dass
+jemand vorher einen Vorhabentyp auswählen und dessen Konsequenzen verstehen muss.
+
+### 3.3 Ehrlichkeit zur Publikationsphase
+
+Die 24 Monate reichen realistisch bis zur **Einreichung**, nicht bis zur
+Veröffentlichung. Nach der Einreichung vergehen typischerweise weitere Monate bis
+zur Entscheidung, oft mit einer Überarbeitungsrunde dazwischen.
+
+Das System sagt das offen, statt am Ende Verzug zu melden: Der Zielpunkt von Monat
+24 ist „eingereicht". Was danach kommt, läuft ohne Zeitdruck weiter.
+
+Für jemanden, der zum ersten Mal veröffentlicht, ist diese Erwartung selbst schon
+eine wichtige Information.
+
+### 3.4 Verschiebung statt Verzug
+
+**Die wichtigste Entscheidung für den sanften Ton.**
+
+Wenn etwas länger dauert, meldet das System keine Überfälligkeit, sondern rechnet
+das voraussichtliche Ende neu:
+
+> „Das Sammeln läuft seit zehn Monaten, geplant waren acht. Wenn es so
+> weitergeht, wird die Einreichung eher Monat 27 als Monat 22."
+
+Das ist eine Tatsache, kein Vorwurf, und trotzdem die wirksamste Form von Druck —
+weil sie die Folge sichtbar macht, statt zu schimpfen. Nach oben verschobene
+Termine werden nicht rot markiert; sie stehen einfach da.
+
+Wer den Plan bewusst anpasst, verschiebt den Zielpunkt selbst. Dann ist die neue
+Zeitachse die richtige, und das System hört auf zu rechnen.
+
+### 3.5 Der Standort auf der Zeitachse
+
+Jedes Projekt hat ein Startdatum. Daraus ergibt sich jederzeit die Aussage:
+
+> „Monat 9 von 24. Planmäßig wären Sie jetzt im Sammeln — das passt."
+
+oder
+
+> „Monat 9 von 24. Das Sammeln hat noch nicht begonnen. Kein Drama, aber die
+> Einreichung rückt entsprechend nach hinten."
+
+Diese eine Zeile steht auf jeder Projektakte ganz oben. Sie ist für Unerfahrene
+die wertvollste Einzelinformation im ganzen System, weil sie die Frage beantwortet,
+die man sich sonst nicht zu stellen traut: *Bin ich eigentlich im Plan?*
+
+---
+
+## 4. Die drei Schichten
 
 ### Schicht 1 — Ablage
 
-Was gibt es, wo steht es. Projekte, Phasen, Ergebnisse, Aufgaben, Dokumente,
-Personen, Publikationsstand. Vollständig frei bearbeitbar.
+Was gibt es, wo steht es. Projekte, Abschnitte, Ergebnisse, Aufgaben, Dokumente,
+Personen, Publikationsstand. Frei bearbeitbar.
 
 ### Schicht 2 — Orientierung
 
-Was gehört üblicherweise dazu. Zu jeder Phase eine Checkliste mit Erklärung: Was
-ist der Sinn dieser Phase, was sollte am Ende vorliegen, was ist ein typischer
-Fehler, wie lange dauert das erfahrungsgemäß.
+Was gehört üblicherweise dazu. Zu jedem Abschnitt und jedem Schritt eine
+Checkliste mit Erklärung: Wozu ist das da, was sollte am Ende vorliegen, was geht
+hier erfahrungsgemäß schief, wie lange dauert es.
 
-Diese Schicht ist der eigentliche Wert für Unerfahrene. Sie ist Lernmaterial, das
-zum richtigen Zeitpunkt erscheint — nicht als Handbuch, das niemand liest, sondern
-als das, was gerade auf dem Bildschirm relevant ist.
+Diese Schicht ist der eigentliche Wert. Sie ist Lernmaterial, das zum richtigen
+Zeitpunkt erscheint — nicht als Handbuch, das niemand liest.
 
 ### Schicht 3 — Aufmerksamkeit
 
-Worauf sollte ich gerade schauen. Weiche Hinweise, für beide Zielgruppen getrennt
-formuliert:
+Worauf sollte ich gerade schauen. Weiche Hinweise, **getrennt nach Stufe
+formuliert**:
 
-*Für Forschende:* „Die Datenerhebung läuft seit acht Monaten. Üblich sind etwa
-sechs. Gibt es etwas, das hakt?"
+*An Forschende:* „Die Ethikeinreichung steht an. Erfahrungsgemäß dauert das Votum
+zwei bis drei Monate — es lohnt sich, das früh loszuschicken."
 
-*Für Forschungsleitende:* „Diese drei Projekte hast du seit sechs Wochen nicht
-geöffnet." — „Bei Projekt X steht die Ethikeinreichung an. Erfahrungsgemäß lohnt
-sich vorher ein gemeinsamer Blick auf das Protokoll."
+*An die Forschungsleitung:* „Bei Projekt X steht die Ethikeinreichung an. Ein
+gemeinsamer Blick aufs Protokoll vorher spart meist eine Rückfragenrunde."
 
-Schicht 3 ersetzt die Geschäftsregeln aus §10 des Kompendiums. Gleicher Inhalt,
-andere Wirkung: aus „darf nicht" wird „schau mal".
+Schicht 3 ersetzt die Geschäftsregeln aus §10. Gleicher Inhalt, andere Wirkung:
+aus „darf nicht" wird „schau mal".
 
 ---
 
-## 3. Wie aus Regeln Hinweise werden
+## 5. Wie aus Regeln Hinweise werden
 
-Jede Regel aus Kompendium §10 bleibt fachlich erhalten und wird zur Beobachtung.
-
-| Ursprüngliche Regel | Umsetzung als Hinweis |
+| Ursprüngliche Regel (§10) | Umsetzung |
 |---|---|
-| Keine Phasenaktivierung ohne Entry-Kriterien | Beim Start einer Phase erscheint einmalig, was üblicherweise vorher vorliegt. Startet trotzdem. |
-| Kein Phasenabschluss ohne Exit-Kriterien | Beim Abschließen: „Zwei Punkte der Checkliste sind offen — trotzdem abschließen?" Ja ist immer möglich. |
-| Keine Datenerhebung ohne Ethikvotum | Notiz auf der Projektakte: „Ethikvotum ist nicht hinterlegt." Sichtbar, aber ohne Sperre. Wegklickbar, wenn nicht ethikpflichtig. |
+| Keine Phasenaktivierung ohne Entry-Kriterien | Beim Start eines Abschnitts erscheint einmalig, was üblicherweise vorher vorliegt. Startet trotzdem. |
+| Kein Abschluss ohne Exit-Kriterien | „Zwei Punkte sind offen — trotzdem abschließen?" Ja ist immer möglich. |
+| Keine Datenerhebung ohne Ethikvotum | Notiz auf der Projektakte, sichtbar, wegklickbar wenn nicht ethikpflichtig. |
 | Keine finale Analyse ohne Datensatz-Freeze | Hinweis mit kurzer Erklärung, warum ein fester Datenstand vor der Auswertung sinnvoll ist. |
-| Kritische Änderungen erzeugen Change Requests | Entfällt im MVP. Änderungen am Protokoll landen in der Dokumenthistorie. |
-| Eskalation bei ausbleibendem Statusupdate | Kein Alarm an Vorgesetzte, sondern eine ruhige Sammelmail: „Diese Projekte melden sich länger nicht." |
+| Kritische Änderungen erzeugen Change Requests | Entfällt im MVP. Protokolländerungen landen in der Dokumenthistorie. |
+| Eskalation bei ausbleibendem Statusupdate | Kein Alarm, sondern eine ruhige Sammelmail an die Forschungsleitung. |
 | Risiken mit festem Review-Termin | Optionales Datum. Wer keins setzt, wird nicht gemahnt. |
 
-Der Unterschied ist nicht kosmetisch. Ein gesperrter Knopf erzeugt bei
-Unerfahrenen Ratlosigkeit und Ausweichverhalten — man legt das Projekt eben
-außerhalb des Systems weiter. Ein erklärender Hinweis erzeugt Wissen.
-
 ---
 
-## 4. Rahmen der ersten Ausbaustufe
+## 6. Technische Grundsatzentscheidungen
 
-| Entscheidung | Festlegung |
-|---|---|
-| Plattform | FileMaker Pro Clients + **FileMaker Server** (Mehrbenutzer) |
-| Mindestversion | FileMaker 2023 (v20) oder neuer |
-| Datenumfang | **Nur Steuerungs- und Metadaten.** Keine personenbezogenen Studiendaten |
-| Funktionsumfang | MVP nach Kompendium §14.1, ergänzt um die Orientierungsschicht |
-| Vorgehen | Etappenweise, jede Etappe für sich nutzbar |
+Nachträglich teuer zu ändern, unabhängig vom Ton des Systems.
 
-**Im MVP:** Projektakte · Phasen mit Checklisten und Erklärtexten · Ergebnisse ·
-Aufgaben · Dokumente mit Versionshistorie · Risiken und Blocker · Übersichtsseite
-· Publikationsstand · Hinweis-Schicht · Verlaufsprotokoll.
+### 6.1 Eine Datei
+Ohne Patientendaten kein Grund zur Trennung. Eine `.fmp12` hält Schema, Daten und
+Oberfläche.
 
-**Später:** Variablenregister und Codebook (§9.9) · Analysepakete (§9.10) ·
-vollständige Ethik-Historie · Change Requests · Lessons Learned · Schnittstellen.
+### 6.2 Anchor-Buoy im Beziehungsdiagramm
+Pro Kontext ein eigener Anker. Der Graph wird groß, aber lesbar und wartbar.
 
----
+### 6.3 UUID als Primärschlüssel
+`Get(UUID)`, nicht änderbar. Macht Vorlagenimport und spätere Zusammenführung
+konfliktfrei. Zusätzlich ein lesbarer Projektcode (`2026-014`) für Menschen.
 
-## 5. Technische Grundsatzentscheidungen
-
-Diese Punkte sind unabhängig von der Strenge des Systems und nachträglich teuer
-zu ändern.
-
-### 5.1 Eine Datei
-
-Ohne Patientendaten gibt es keinen Grund zur Dateitrennung. Eine `.fmp12`-Datei
-hält Schema, Daten und Oberfläche.
-
-### 5.2 Anchor-Buoy im Beziehungsdiagramm
-
-Pro Kontext ein eigener Anker mit den daran hängenden Tabellenauftreten. Der Graph
-wird groß, aber lesbar und wartbar.
-
-### 5.3 UUID als Primärschlüssel
-
-Alle Schlüssel als `Get(UUID)`, nicht änderbar. Macht Vorlagenimport, spätere
-Dateizusammenführung und Duplizierung konfliktfrei. Zusätzlich ein lesbarer
-Projektcode (`2026-014`) für Menschen.
-
-### 5.4 Namenskonvention
-
+### 6.4 Namenskonvention
 ```
 __pkProjectID      Primärschlüssel
 _fkProjectID       Fremdschlüssel
 Status             normales Feld
-c_PhaseAging       Berechnungsfeld (nicht gespeichert)
-s_PhaseAging       per Script gesetzter, gespeicherter Wert
+c_MonatImProjekt   Berechnungsfeld (nicht gespeichert)
+s_MonatImProjekt   per Script gesetzter, gespeicherter Wert
 g_CurrentProjectID globales Feld
 zz_Utility         Hilfstabelle
 ```
 
-Ohne Ausnahmen durchgehalten.
+### 6.5 Checklistenpunkte sind Datensätze, keine Textfelder
+Jeder Punkt ein eigener Datensatz mit Erklärtext, Erledigt-Kennzeichen,
+„trifft nicht zu"-Kennzeichen und Notizfeld.
 
-### 5.5 Checklistenpunkte sind Datensätze, keine Textfelder
+Der Grund ist nicht mehr die Regelprüfung, sondern: die **Erklärung hängt am
+einzelnen Punkt**, und der Fortschritt wird sichtbar. Ein Fließtextfeld kann
+weder erklären noch anzeigen, wie weit man ist.
 
-Jeder Punkt einer Phasen-Checkliste ist ein eigener Datensatz mit Erklärtext,
-Erledigt-Kennzeichen und Notizfeld.
+### 6.6 Zeitachse zweigleisig rechnen
+Der Standort im Projekt (Monat X von 24) und die Fortschreibung des voraus-
+sichtlichen Endes sind die meistgenutzten Werte im System. In der Detailansicht
+live gerechnet, für Listen und die Leitungsansicht nächtlich in gespeicherte
+`s_`-Felder geschrieben — nicht gespeicherte Berechnungen sind in Listen langsam
+und weder sortier- noch durchsuchbar.
 
-Das bleibt auch im lockeren System die richtige Struktur — aus einem anderen
-Grund als vorher. Nicht, damit ein Script Sperren berechnen kann, sondern damit
-die **Erklärung am einzelnen Punkt hängt** und der Fortschritt sichtbar wird. Ein
-Fließtextfeld kann weder erklären noch anzeigen, wie weit man ist.
+### 6.7 Verlaufsprotokoll statt Audit-Log
+Ein lesbarer Verlauf je Projekt: „14.03. — Abschnitt Sammeln begonnen (M. Weber)",
+„02.04. — Protokoll v3 hochgeladen".
 
-### 5.6 Kennzahlen vorberechnen
+Dient dem Verstehen, nicht der Kontrolle, und ist für neue Beteiligte und für die
+Betreuung nützlich. Wird per Script an relevanten Stellen geschrieben, nicht durch
+flächendeckende Überwachung. Wo später echte Nachweispflicht entsteht (Ethik,
+Publikation), lässt sich gezielt ein strengeres Protokoll ergänzen.
 
-Nicht gespeicherte Berechnungen sind in Listen langsam und weder sortier- noch
-durchsuchbar. Deshalb zweigleisig: in der Detailansicht live gerechnet, für
-Übersicht und Listen nächtlich in gespeicherte `s_`-Felder geschrieben.
-
-### 5.7 Verlaufsprotokoll statt Audit-Log
-
-Statt eines lückenlosen Feld-für-Feld-Protokolls ein **lesbarer Verlauf** je
-Projekt: „14.03. — Phase Datenerhebung gestartet (M. Weber)", „02.04. — Protokoll
-v3 hochgeladen".
-
-Für ein begleitendes System ist das die passende Form. Es dient dem Verstehen
-(„was ist hier eigentlich passiert?") und ist für neue Beteiligte und für die
-Betreuung nützlich — nicht der Kontrolle. Wird per Script an den relevanten
-Stellen geschrieben, nicht durch flächendeckende Überwachung.
-
-Wo später echte Nachweispflicht entsteht (Ethik, Publikation), lässt sich für
-diese Objekte gezielt ein strengeres Protokoll ergänzen.
-
-### 5.8 Entwickeln mit dem Data Migration Tool
-
+### 6.8 Entwickeln mit dem Data Migration Tool
 Ab dem ersten Echtdatensatz nicht mehr an der Live-Datei schrauben:
 Entwicklungskopie ändern, `FMDataMigration` überträgt die Produktivdaten, Tausch
 im Wartungsfenster.
 
 ---
 
-## 6. Datenmodell des MVP
+## 7. Datenmodell des MVP
 
-### 6.1 Tabellen
+### 7.1 Tabellen
 
 **Stammdaten**
-- `Projects` — Projektakte. Ein Pflichtfeld: Titel. Alles andere optional.
-- `ProjectTypes` — Vorhabentyp, wählt die passende Phasenvorlage vor
+- `Projects` — Projektakte. Pflicht: Titel und Startdatum. Alles andere optional.
+  Die Art des Vorhabens ist ein rein beschreibendes Feld ohne Steuerungswirkung.
 - `People`, `Roles`, `ProjectPeople` — wer ist mit welcher Rolle beteiligt
 
 **Ablauf**
-- `PhaseTemplates` — Katalog der üblichen Phasen je Vorhabentyp, mit Erklärtexten
-- `Phases` — Phasen des konkreten Projekts, frei anleg- und löschbar
-- `ChecklistItems` — Checklistenpunkte mit Erklärung, Vorlage und Instanz
+- `SectionTemplates` — die fünf Abschnitte mit Erklärtexten und Regeldauern
+- `StepTemplates` — die dreizehn Schritte darunter
+- `Sections` — Abschnitte des konkreten Projekts, mit eigenen Terminen
+- `Steps` — Schritte des konkreten Projekts, abwählbar
+- `ChecklistItems` — Checklistenpunkte, Vorlage und Instanz
 
 **Arbeitsebene**
-- `Deliverables` — Ergebnisse, die am Ende einer Phase vorliegen sollten
-- `Tasks` — einzelne Aufgaben
+- `Deliverables` — was am Ende eines Abschnitts vorliegen sollte
+- `Tasks` — einzelne Aufgaben, an Abschnitt, Schritt oder direkt am Projekt
 
 **Nachweise und Steuerung**
 - `Documents` + `DocumentVersions`
 - `Risks` — was gerade hakt
 - `Manuscripts` + `Submissions` — Publikationsstand
-- `Nudges` — erzeugte Hinweise inkl. „weggeklickt"-Kennzeichen
+- `Nudges` — erzeugte Hinweise, mit Stufe und „weggeklickt"-Kennzeichen
 - `ActivityLog` — Verlaufsprotokoll
 - `zz_Utility` — globale Felder und Einstellungen
 
-### 6.2 Kernbeziehungen
+Kein `ProjectTypes` mehr — es gibt nur ein Ablaufmodell.
+
+### 7.2 Kernbeziehungen
 
 ```
-ProjectTypes ──< Projects ──< Phases ──< Deliverables ──< Tasks
-                    │            └──< ChecklistItems
-                    ├──< ProjectPeople >── People >── Roles
-                    ├──< Documents ──< DocumentVersions
-                    ├──< Risks
-                    ├──< Manuscripts ──< Submissions
-                    ├──< Nudges
-                    └──< ActivityLog
+Projects ──< Sections ──< Steps ──< ChecklistItems
+    │            └──< Deliverables ──< Tasks
+    ├──< ProjectPeople >── People >── Roles
+    ├──< Documents ──< DocumentVersions
+    ├──< Risks
+    ├──< Manuscripts ──< Submissions
+    ├──< Nudges
+    └──< ActivityLog
 ```
 
-Aufgaben hängen an einer Phase oder direkt am Projekt — beides erlaubt. Wer ohne
-Phasenstruktur arbeiten will, kann das.
+Aufgaben hängen an einem Abschnitt, einem Schritt oder direkt am Projekt — alle
+drei erlaubt. Wer ohne Struktur arbeiten will, kann das.
 
-### 6.3 Vorlagen
+### 7.3 Projektanlage
 
-Beim Anlegen eines Projekts schlägt das System anhand des Vorhabentyps die
-üblichen Phasen samt Checklisten vor. Der Vorschlag erscheint zur **Bestätigung**,
-nicht als Automatik: Phasen lassen sich vorher abwählen, später ergänzen oder
-löschen.
+Titel und Startdatum eingeben. Das System legt daraufhin die fünf Abschnitte mit
+den aus dem Startdatum berechneten Regelterminen an, dazu die dreizehn Schritte
+und ihre Checklisten.
 
-Wer den Vorschlag ganz ablehnt, bekommt ein leeres Projekt. Auch das ist ein
-gültiger Zustand.
+Der Vorschlag erscheint zur Bestätigung, nicht als vollendete Tatsache: Termine
+lassen sich verschieben, Schritte abwählen, Abschnitte ergänzen. Wer alles
+ablehnt, bekommt ein leeres Projekt — auch das ist ein gültiger Zustand.
 
 ---
 
-## 7. Die Wissensschicht
+## 8. Die Wissensschicht
 
-Das ist der Teil, der das System für Unerfahrene wertvoll macht — und der Teil,
-der die meiste inhaltliche Arbeit kostet.
+Der Teil, der das System wertvoll macht, und der die meiste inhaltliche Arbeit
+kostet. Pro Abschnitt und pro Schritt hinterlegt:
 
-Zu jeder der zwölf Phasen aus §6.1 des Kompendiums gehört hinterlegt:
-
-- **Wozu diese Phase da ist** — zwei, drei Sätze
+- **Wozu das da ist** — zwei, drei Sätze
 - **Was am Ende vorliegen sollte** — die Checkliste, jeder Punkt einzeln erklärt
 - **Typische Stolpersteine** — was hier erfahrungsgemäß schiefgeht
-- **Übliche Dauer** — als Orientierung, nicht als Vorgabe. Die Zahlen aus §1 des
-  Kompendiums (2 Monate Projektentwicklung, 6 Monate Datenerhebung, 2 Monate
-  Schreiben, 4 Monate Publikation) sind der Ausgangspunkt
-- **Betreuungshinweis** — worauf eine Forschungsleitung an dieser Stelle schauen
-  sollte, und was sich lohnt, im nächsten Gespräch anzusprechen
+- **Regeldauer** — als Orientierung, Grundlage der Zeitachse
+- **Für Forschende** — was jetzt sinnvollerweise als Nächstes ansteht
+- **Für die Forschungsleitung** — worauf zu schauen ist und was sich fürs
+  nächste Gespräch lohnt
 
-Diese Inhalte liegen als Daten in `PhaseTemplates` und `ChecklistItems`, nicht im
-Programmcode. Sie sind damit ohne Entwicklungsaufwand pflegbar und wachsen mit der
-eigenen Erfahrung: Was sich als wiederkehrender Stolperstein herausstellt, wird
-ergänzt und hilft beim nächsten Projekt.
+Die letzten beiden Punkte sind die Umsetzung der zwei Stufen. Derselbe
+Sachverhalt, zweimal formuliert.
 
----
-
-## 8. Rollen und Rechte
-
-Bewusst schlank. Ein begleitendes System, das Leute aussperrt, widerspricht sich
-selbst.
-
-| Set | Umfang |
-|---|---|
-| Administration | Vollzugriff inkl. Schema und Pflege der Wissensschicht |
-| Standard | Alles sehen, eigene und zugewiesene Projekte bearbeiten |
-| Gast | Lesen und Export |
-
-Die Rollen aus §8.1 des Kompendiums (PI, Projektführung, Datenerhebung, Statistik,
-Regulatory, Co-Autor, Koordination) bleiben als **fachliche Zuordnung** in
-`ProjectPeople` erhalten. Sie beantworten „wer kümmert sich", nicht „wer darf
-klicken", und steuern, wer welchen Hinweis bekommt.
-
-Datensatzbezogene Zugriffsbeschränkungen bleiben vorerst außen vor: sie kosten
-Performance, erschweren Auswertungen und lösen ein Problem, das hier nicht besteht.
+Diese Inhalte liegen als **Daten** in `SectionTemplates` und `StepTemplates`,
+nicht im Programmcode. Sie sind ohne Entwicklungsaufwand pflegbar und wachsen mit
+der eigenen Erfahrung.
 
 ---
 
 ## 9. Oberfläche
 
-- **Übersichtsseite** — alle Projekte mit Titel, Zuständigen, aktueller Phase,
-  Stimmungsbild, nächstem Termin. Statt einer Ampel mit Verbotscharakter eine
-  ruhige Kennzeichnung: läuft · stockt · ruht · abgeschlossen.
-- **Projektakte** — Kopfbereich, darunter Reiter für Phasen, Ergebnisse,
-  Aufgaben, Dokumente, Risiken, Publikation, Verlauf. Rechts eine schmale Spalte
-  „Hinweise" mit den offenen Punkten aus Schicht 3, jeder einzeln wegklickbar.
-- **Phasenansicht** — links die Checkliste mit Erklärtexten, rechts Ergebnisse und
-  Aufgaben. Der Erklärtext steht sichtbar da, nicht hinter einem Fragezeichen.
-- **Arbeitslisten** — „Meine Aufgaben", „Was steht an", „Was stockt".
-- **Betreuungsansicht** — eigene Seite für Forschungsleitende: welche Projekte
-  länger nichts gemeldet haben, wo eine Phase ungewöhnlich lange läuft, was sich
-  fürs nächste Gespräch lohnt.
+Nach der Anmeldung entscheidet das Rechteset über die Einstiegsseite.
 
-Grundton der Texte: sachlich und knapp, ohne Ausrufezeichen. „Läuft seit acht
+### Einstieg Forschende — „Mein Projekt"
+
+Oben die Standortzeile („Monat 9 von 24 — planmäßig im Sammeln"). Darunter der
+aktuelle Abschnitt mit seiner Checkliste und den Erklärtexten. Rechts eine
+schmale Spalte mit zwei bis drei Hinweisen, jeder wegklickbar. Unten die eigenen
+offenen Aufgaben.
+
+Bei mehreren eigenen Projekten eine schlichte Auswahl davor.
+
+### Einstieg Forschungsleitung — „Meine Projekte"
+
+Alle betreuten Projekte als ruhige Liste: Titel, wer daran arbeitet, Standort auf
+der Zeitachse, Kennzeichnung *läuft · stockt · ruht · abgeschlossen*, und die
+voraussichtliche Einreichung.
+
+Darunter der eigentliche Kern: **„Was sich zu besprechen lohnt"** — je Projekt ein
+bis zwei Sätze aus der Wissensschicht, passend zum aktuellen Stand.
+
+### Gemeinsame Ansichten
+
+- **Projektakte** — Kopfbereich mit Zeitachse, darunter Reiter für Abschnitte,
+  Ergebnisse, Aufgaben, Dokumente, Risiken, Publikation, Verlauf
+- **Abschnittsansicht** — links Checkliste mit sichtbaren Erklärtexten, rechts
+  Ergebnisse und Aufgaben
+- **Zeitachse** — die fünf Bänder über 24 Monate, Soll und Ist übereinander
+
+Grundton aller Texte: sachlich, knapp, ohne Ausrufezeichen. „Läuft seit zehn
 Monaten" statt „ÜBERFÄLLIG!".
 
 ---
 
 ## 10. Automationen
 
-Ein nächtlicher Serverlauf:
+Ein nächtlicher Serverlauf: Standort und voraussichtliches Ende neu berechnen,
+Hinweise erzeugen und veraltete zurückziehen, Verlauf verdichten.
 
-1. Kennzahlen neu berechnen
-2. Hinweise erzeugen und veraltete zurückziehen
-3. Verlaufsprotokoll verdichten
+Dazu **ein Wochenimpuls pro Person**, abschaltbar:
 
-Dazu ein **wöchentlicher Sammelversand** — eine ruhige Mail pro Person mit dem,
-was ansteht, statt Einzelbenachrichtigungen bei jedem Ereignis. Abschaltbar.
+- *An Forschende:* wo Sie stehen, plus zwei bis drei konkrete nächste Schritte
+- *An die Forschungsleitung:* was sich diese Woche zu besprechen lohnt
 
-Rechenintensives (Projektanlage aus Vorlage, Übersichtsaufbau) läuft über
-*Perform Script on Server*.
+Eine ruhige Mail pro Woche statt Einzelbenachrichtigungen bei jedem Ereignis.
+
+Rechenintensives (Projektanlage, Leitungsansicht) läuft über *Perform Script on
+Server*.
 
 ---
 
 ## 11. Bau-Reihenfolge
 
-Jede Etappe endet mit einem nutzbaren Stand.
-
 ### Etappe 0 — Fundament
-Datei, Namenskonvention, Hilfstabelle, Konten und drei Rechtesets, Serverablage,
-Sicherungsplan.
+Datei, Namenskonvention, Hilfstabelle, Konten und die zwei Rechtesets plus
+Administration, Serverablage, Sicherungsplan.
 *Ergebnis:* Datei liegt auf dem Server, Anmeldung funktioniert.
 
 ### Etappe 1 — Projekte und Personen
-`Projects`, `ProjectTypes`, `People`, `Roles`, `ProjectPeople`, `ActivityLog`.
-Projektakte mit Kopfbereich und Beteiligten. Schnellanlage: Titel eingeben, fertig.
+`Projects`, `People`, `Roles`, `ProjectPeople`, `ActivityLog`. Projektakte mit
+Kopfbereich und Beteiligten. Schnellanlage: Titel und Startdatum, fertig.
 *Ergebnis:* Projekte lassen sich anlegen und Beteiligte zuordnen.
 
-### Etappe 2 — Phasen
-`PhaseTemplates`, `Phases`, `ChecklistItems`. Die zwölf Standardphasen als
-Vorlage. Vorschlagsdialog bei Projektanlage, frei anpassbar.
-*Ergebnis:* Ein neues Projekt bekommt auf Wunsch seine Phasen; sie lassen sich
-umsortieren, ergänzen, löschen.
+### Etappe 2 — Abschnitte, Schritte und Zeitachse
+`SectionTemplates`, `StepTemplates`, `Sections`, `Steps`, `ChecklistItems`. Die
+fünf Abschnitte und dreizehn Schritte als Vorlage, Terminberechnung aus dem
+Startdatum, Standortzeile, Fortschreibung des voraussichtlichen Endes.
+*Ergebnis:* Ein neues Projekt bekommt seinen 24-Monats-Bogen; jede Projektakte
+sagt, in welchem Monat man ist und wohin es läuft.
 
 ### Etappe 3 — Wissensschicht *(inhaltliches Kernstück)*
-Erklärtexte, Checklistenpunkte, Stolpersteine, Dauerwerte und Betreuungshinweise
-für alle zwölf Phasen einpflegen. Anzeige in der Phasenansicht.
-*Ergebnis:* Wer eine Phase öffnet, sieht ohne Nachfragen, worum es geht und was
-dazugehört. Diese Etappe ist überwiegend Schreibarbeit, keine Entwicklung.
+Erklärtexte, Checklistenpunkte, Stolpersteine und Regeldauern für alle Abschnitte
+und Schritte einpflegen, jeweils in beiden Fassungen (Forschende /
+Forschungsleitung). Anzeige in der Abschnittsansicht.
+*Ergebnis:* Wer einen Abschnitt öffnet, sieht ohne Nachfragen, worum es geht.
+Überwiegend Schreibarbeit, kaum Entwicklung.
 
-### Etappe 4 — Ergebnisse und Aufgaben
-`Deliverables`, `Tasks`, Arbeitsliste „Meine Aufgaben".
+### Etappe 4 — Die zwei Einstiegsseiten
+„Mein Projekt" und „Meine Projekte" inklusive der Besprechungsvorschläge.
+*Ergebnis:* Beide Stufen haben ihren eigenen Zugang. Ab hier ist das System für
+beide Zielgruppen sinnvoll benutzbar.
+
+### Etappe 5 — Ergebnisse und Aufgaben
+`Deliverables`, `Tasks`, Aufgabenliste.
 *Ergebnis:* Aufgaben sind zuweisbar, Fortschritt wird sichtbar.
 
-### Etappe 5 — Dokumente
+### Etappe 6 — Dokumente
 `Documents` + `DocumentVersions`, Ablage mit External Secure Storage, Historie.
 *Ergebnis:* Eine neue Version ergänzt die alte, statt sie zu ersetzen.
 
-### Etappe 6 — Risiken und Blocker
-`Risks`, schlank gehalten: was hakt, wer kümmert sich, seit wann.
-*Ergebnis:* Stockende Projekte sind auf der Übersicht erkennbar.
+### Etappe 7 — Risiken und Blocker
+`Risks`, schlank: was hakt, wer kümmert sich, seit wann.
+*Ergebnis:* Stockende Projekte sind in der Leitungsansicht erkennbar.
 
-### Etappe 7 — Hinweis-Schicht
-`Nudges`, Regeln aus Kapitel 3, Wegklick-Mechanik, Hinweisspalte in der
-Projektakte.
+### Etappe 8 — Hinweis-Schicht
+`Nudges`, die Regeln aus Kapitel 5, Wegklick-Mechanik, Hinweisspalte.
 *Ergebnis:* Das System meldet sich von selbst — und lässt sich beruhigen.
 
-### Etappe 8 — Publikationsstand
-`Manuscripts`, `Submissions` mit den Statuswerten aus §9.11.
+### Etappe 9 — Publikationsstand
+`Manuscripts`, `Submissions` mit den Statuswerten aus §9.11, ohne Zeitdruck
+jenseits von Monat 24.
 *Ergebnis:* Der Weg von Draft bis Published ist abbildbar.
 
-### Etappe 9 — Übersicht, Betreuungsansicht, Serverlauf
-Übersichtsseite, Betreuungsansicht, Arbeitslisten, Nachtlauf, Wochenmail.
-*Ergebnis:* Die Übersicht stimmt mit den Detaildaten überein, der Nachtlauf läuft
-ohne Eingriff.
+### Etappe 10 — Serverlauf und Wochenimpuls
+Nachtlauf, Wochenmail in beiden Fassungen.
+*Ergebnis:* Das System läuft ohne Eingriff und meldet sich von selbst.
 
-### Etappe 10 — Feinschliff und Einführung
+### Etappe 11 — Feinschliff und Einführung
 Texte überarbeiten, Export nach Excel und PDF, Testlauf mit zwei echten
-Projekten, kurze Anleitung für Anwender.
+Projekten, kurze Anleitung.
 *Ergebnis:* produktiv nutzbar.
 
-Die Reihenfolge ist bewusst so gewählt, dass nach Etappe 3 bereits der
-inhaltliche Kernnutzen steht — Orientierung für Unerfahrene — auch wenn Aufgaben,
-Dokumente und Übersicht noch fehlen.
+Die Reihenfolge ist so gewählt, dass nach **Etappe 4** der Kernnutzen steht —
+Orientierung auf der Zeitachse für beide Stufen — auch wenn Aufgaben, Dokumente
+und Publikation noch fehlen.
 
 ---
 
 ## 12. Arbeitsweise
 
 `.fmp12`-Dateien sind Binärformat und entstehen nur in FileMaker Pro selbst.
-Deshalb:
 
 **Im Repository entsteht pro Etappe:** Detailspezifikation mit Feldliste und
 Typen, Berechnungsformeln zum Kopieren, Script-Schritte in ausführbarer
 Reihenfolge, Layout-Aufbau, Import-fertige CSV-Dateien für Vorlagen, Wertelisten
-und die Wissensschicht.
+und Wissensschicht.
 
 **In FileMaker Pro passiert:** der Nachbau anhand dieser Anleitung.
-
-So bleibt jede Etappe reproduzierbar und dokumentiert, auch wenn später jemand
-anderes daran arbeitet.
 
 ---
 
 ## 13. Offene Punkte
 
 **Vor Etappe 2:**
-1. Welche Vorhabentypen sollen hinterlegt sein — retrospektive Auswertung,
-   prospektive Studie, Fallserie, Review, Qualifikationsarbeit?
-2. Gelten die zwölf Phasen für alle Typen gleich, oder braucht ein Review eine
-   kürzere Kette?
+1. Passen die Regeldauern der fünf Abschnitte (4 / 5 / 8 / 4 / 6 Monate mit
+   Überlappung), oder gibt es eigene Erfahrungswerte?
+2. Ist Monat 24 der Zielpunkt für die **Einreichung** (so vorgeschlagen) oder für
+   die Annahme?
 
-**Vor Etappe 3 (Wissensschicht):**
-3. Wer schreibt die Erklärtexte und Stolpersteine? Ich kann Entwürfe je Phase
-   vorlegen, die fachliche Prüfung und der eigene Erfahrungsschatz müssen von
-   Ihnen kommen — das ist der Teil, der das System vom Lehrbuch unterscheidet.
-4. Sollen die Dauerwerte aus dem Kompendium (2/6/2/4 Monate) als Ausgangswerte
-   dienen, oder gibt es eigene Erfahrungswerte?
+**Vor Etappe 3:**
+3. Wer schreibt die Erklärtexte und Stolpersteine? Ich lege Entwürfe für alle
+   Abschnitte und Schritte in beiden Fassungen vor; die fachliche Prüfung und der
+   eigene Erfahrungsschatz müssen von Ihnen kommen. Das ist der Teil, der das
+   System vom Lehrbuch unterscheidet.
 
-**Vor Etappe 7 und 9:**
-5. Ab wann gilt ein Projekt als „meldet sich länger nicht" — vier Wochen, acht?
-6. Steht ein SMTP-Zugang für die Wochenmail bereit?
-7. Dokumente in FileMaker-Containern oder nur Verweise auf einen bestehenden
+**Vor Etappe 8 und 10:**
+4. Ab wann gilt ein Projekt als „meldet sich länger nicht" — vier Wochen, acht?
+5. Steht ein SMTP-Zugang für den Wochenimpuls bereit?
+6. Dokumente in FileMaker-Containern oder nur Verweise auf einen bestehenden
    Netzwerkspeicher?
 
 **Technisch:**
-8. Welche FileMaker-Serverversion steht bereit, wie viele gleichzeitige Nutzer?
+7. Welche FileMaker-Serverversion steht bereit, wie viele gleichzeitige Nutzer?
