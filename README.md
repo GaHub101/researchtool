@@ -8,7 +8,11 @@ Spezifikation und Bauunterlagen für ein System zur Planung, Steuerung und
 | Datei | Inhalt |
 |---|---|
 | [`docs/00-kompendium-fachspezifikation.md`](docs/00-kompendium-fachspezifikation.md) | Fachliche Quellspezifikation: Zielbild, Prozess, Datenmodell, Module, Geschäftsregeln |
-| [`docs/01-umsetzungsplan-filemaker.md`](docs/01-umsetzungsplan-filemaker.md) | Technischer Umsetzungsplan für FileMaker: Leitgedanke, Architekturentscheidungen und Bau-Reihenfolge |
+| [`docs/01-umsetzungsplan-filemaker.md`](docs/01-umsetzungsplan-filemaker.md) | Umsetzungsplan: Leitgedanke, Architekturentscheidungen, Bau-Reihenfolge |
+| [`docs/02-bauunterlagen/`](docs/02-bauunterlagen/) | **Bauunterlagen** — Bildschirme, Tabellen, Beziehungen, Formeln, Skripte, Layouts, Konten |
+| [`seed/`](seed/) | **Import-fertige Startdaten** inklusive der kompletten Wissensschicht |
+
+Einstieg in den Bau: [`docs/02-bauunterlagen/00-bauweg.md`](docs/02-bauunterlagen/00-bauweg.md)
 
 ## Leitgedanke
 
@@ -51,5 +55,12 @@ markieren — so passt ein Modell auf jedes Vorhaben.
 
 ## Stand
 
-Planung abgeschlossen, Umsetzung noch nicht begonnen. Die Etappen werden
-nacheinander spezifiziert und gebaut — siehe Kapitel 11 des Umsetzungsplans.
+Planung und Bauunterlagen abgeschlossen, Nachbau in FileMaker noch nicht begonnen.
+
+`.fmp12`-Dateien lassen sich nur in FileMaker Pro selbst erzeugen. Deshalb liegt
+hier alles, was sich vorbereiten lässt: 20 Tabellen als import-fertige Dateien,
+26 Beziehungen mit Formeln, 23 Berechnungen zum Einfügen, 9 Skripte Schritt für
+Schritt, 15 Layouts mit Koordinaten — und die komplette Wissensschicht mit 84
+redaktionellen Einträgen.
+
+In FileMaker bleibt der Nachbau anhand dieser Unterlagen.

@@ -1,0 +1,60 @@
+SectionNr	StepNr	Nr	Punkt	Erklaerung
+1	1	1	Fragestellung in einem Satz formuliert	Ein Satz mit Population, Einflussgröße und Zielgröße. Wenn Sie zwei Sätze brauchen, sind es wahrscheinlich zwei Fragen.
+1	1	2	Zielgröße benannt und messbar	Woran genau würden Sie erkennen, dass die Antwort ja oder nein lautet? Ohne das lässt sich später nicht auswerten.
+1	1	3	Relevanz in drei Sätzen beschrieben	Warum sollte das jemanden interessieren, der nicht in Ihrer Abteilung arbeitet? Diese drei Sätze werden später die Einleitung.
+1	1	4	Betreuung ist einverstanden	Ein kurzes ausdrückliches Ja, bevor Zeit investiert wird. Stillschweigen ist keine Zustimmung.
+1	2	1	Datenquelle benannt und zugänglich	Nicht nur welche Quelle, sondern auch: Wer muss zustimmen, und liegt die Zustimmung schriftlich vor?
+1	2	2	Grobe Fallzahl geschätzt	Eine Zahl, kein Gefühl. Auch eine ungenaue Schätzung ist besser als keine — sie lässt sich korrigieren.
+1	2	3	Benötigte Fallzahl überschlagen	Reicht die erreichbare Zahl für das, was Sie zeigen wollen? Wenn nicht, ist jetzt der billigste Zeitpunkt, den Zuschnitt zu ändern.
+1	2	4	Zeitbudget realistisch eingeschätzt	Wie viele Stunden pro Woche stehen tatsächlich zur Verfügung? Die ehrliche Zahl ist meist die Hälfte der ersten Schätzung.
+1	2	5	Statistische Auswertung ist besetzt	Wer wird rechnen? Diese Frage jetzt zu klären ist deutlich einfacher, als sie in Monat 16 zu klären.
+1	3	1	Systematische Suche in mindestens einer Datenbank	Nicht nur, was Sie ohnehin kennen. Eine strukturierte Suche findet regelmäßig die eine Arbeit, die alles ändert.
+1	3	2	Suche dokumentiert	Suchbegriffe, Datenbank, Datum, Trefferzahl. Fünf Minuten Aufwand, die im Methodenteil eine Stunde sparen.
+1	3	3	Übersichtstabelle der wichtigsten Arbeiten	Studie, Design, Fallzahl, Ergebnis, Einschränkung. Diese Tabelle ist später die halbe Diskussion.
+1	3	4	Forschungslücke in zwei Sätzen benannt	Was ist offen, und warum ist das offen geblieben? Wer das nicht sagen kann, hat den Stand noch nicht überblickt.
+2	1	1	Ein- und Ausschlusskriterien festgelegt	Präzise genug, dass zwei Personen unabhängig zur gleichen Entscheidung kämen.
+2	1	2	Variablenliste steht	Jede Variable mit Definition und Einheit. Was nicht auf der Liste steht, wird nicht erhoben.
+2	1	3	Zu jeder Variablen gibt es eine Auswertungsabsicht	Der wirksamste Filter gegen aufgeblähte Erhebungsbögen: Was Sie nicht auswerten wollen, brauchen Sie nicht.
+2	1	4	Auswertungsplan geschrieben	Welche Verfahren für welche Frage. Vor der Erhebung geschrieben, ist er ein Denkwerkzeug; danach ist er eine Rechtfertigung.
+2	1	5	Protokoll mit Versionsnummer abgelegt	Ab hier zählt die Version. Spätere Änderungen erzeugen eine neue Nummer, nicht eine stille Überschreibung.
+2	2	1	Geklärt, ob Ethikvotum erforderlich ist	Im Zweifel bei der Kommission nachfragen. Eine Antwort auf diese Frage dauert Tage, ein nachgeholtes Verfahren Monate.
+2	2	2	Datenschutzrechtliche Seite geprüft	Ethik und Datenschutz sind zwei Vorgänge. Der zweite wird häufiger vergessen.
+2	2	3	Antragsunterlagen vollständig	Die Vollständigkeitsliste der Kommission abarbeiten. Unvollständige Anträge kosten eine komplette Runde.
+2	2	4	Antrag eingereicht, Datum notiert	Ab jetzt läuft eine Wartezeit von typischerweise zwei bis drei Monaten, die sich nicht verkürzen lässt.
+2	2	5	Votum liegt vor, Bezug zur Protokollversion notiert	Welche Version wurde genehmigt? Bei späteren Änderungen ist das die entscheidende Angabe.
+2	3	1	Erhebungsinstrument erstellt	Bogen, Maske oder Tabelle — mit den Variablen aus dem Protokoll, in derselben Reihenfolge.
+2	3	2	Codierungen und Umgang mit fehlenden Werten festgelegt	Was bedeutet ein leeres Feld: nicht erhoben, nicht zutreffend oder nicht bekannt? Diese drei sind nicht dasselbe.
+2	3	3	Probelauf mit drei Fällen	Der billigste Qualitätsschritt im ganzen Projekt. Fast immer findet sich dabei eine unklare Definition.
+2	3	4	Ablage und Sicherung eingerichtet	Wo liegen die Daten, wer hat Zugriff, wie oft wird gesichert? Kurz aufschreiben, nicht nur einrichten.
+3	1	1	Erhebung begonnen, Startdatum notiert	Ab hier läuft die Uhr des längsten Abschnitts.
+3	1	2	Feste Zeitfenster eingeplant	Lieber zwei Stunden wöchentlich als ein Tag im Monat. Erhebung, die nur in Lücken passiert, kommt nicht voran.
+3	1	3	Erste zehn bis zwanzig Fälle erfasst	Der wichtigste Zwischenstand. Danach einmal gründlich hinsehen, bevor es weitergeht.
+3	1	4	Erfassung läuft nach Plan	Bei Rückstand früh melden — eine Verlängerung ist einfacher zu bekommen als eine Notlösung.
+3	1	5	Abweichungen vom Protokoll dokumentiert	Jede Abweichung sofort notieren. Nach vier Wochen erinnert sie niemand mehr, und sie fehlt später im Methodenteil.
+3	2	1	Stichprobenprüfung nach den ersten Fällen	Zehn Fälle noch einmal unabhängig durchsehen. Der wirksamste Einzelschritt des Abschnitts.
+3	2	2	Plausibilitätsprüfungen eingerichtet	Wertebereiche, unmögliche Kombinationen, Datumslogik. Einmal eingerichtet, läuft es mit.
+3	2	3	Offene Fragen und Unklarheiten gesammelt	Eine laufende Liste statt einzelner Zettel. Am Ende ist sie die Grundlage der Bereinigung.
+3	2	4	Zwischenstand mit der Betreuung besprochen	Einmal in der Mitte, nicht erst am Ende. Was hier auffällt, ist noch korrigierbar.
+4	1	1	Offene Fragen aus der Erhebung abgearbeitet	Die Liste aus dem Sammeln durchgehen und jeden Punkt entscheiden — auch wenn die Entscheidung lautet: bleibt unklar.
+4	1	2	Plausibilitätsprüfung über den gesamten Datensatz	Jetzt über alle Fälle, nicht nur über Stichproben.
+4	1	3	Korrekturen protokolliert	Was wurde geändert, warum, von wem? Ohne dieses Protokoll ist der Datensatz später nicht überprüfbar.
+4	1	4	Datenstand festgehalten und benannt	Kopie mit Datum ablegen, die nicht mehr angefasst wird. Alle Ergebnisse beziehen sich ab jetzt auf genau diesen Stand.
+4	2	1	Geplante Auswertungen gerechnet	Die aus dem Auswertungsplan, in der dort festgelegten Form.
+4	2	2	Zusätzliche Auswertungen als solche gekennzeichnet	Explorative Ergebnisse sind wertvoll, solange sie benannt sind. Als geplant dargestellt, sind sie ein Kritikpunkt in der Begutachtung.
+4	2	3	Abweichungen vom Auswertungsplan begründet	Abweichen ist zulässig. Verschweigen nicht.
+4	2	4	Ergebnisartefakte abgelegt	Tabellen, Abbildungen, Rechenskripte — beim Datenstand, auf den sie sich beziehen.
+4	2	5	Ergebnisse mit der Betreuung besprochen	Bevor der Text entsteht. Eine falsch verstandene Zahl kostet im Manuskript deutlich mehr.
+4	2	6	Kurzes Auswertungsmemo geschrieben	Was wurde gerechnet, was kam heraus, was ist einschränkend. Zwei Seiten, die den Ergebnisteil vorbereiten.
+5	1	1	Autorenreihenfolge geklärt und schriftlich festgehalten	Vor dem ersten Absatz. Später wird dieses Gespräch nicht einfacher, sondern schwieriger.
+5	1	2	Zieljournal ausgewählt	Umfang, Aufbau und Format unterscheiden sich stärker als erwartet. Nachträgliches Umbauen kostet mehr als die Auswahl.
+5	1	3	Zwei Alternativjournale festgelegt	Damit die Entscheidung nach einer Ablehnung schon getroffen ist und keine Wochen kostet.
+5	1	4	Rohfassung vollständig	Alle Abschnitte vorhanden, auch wenn noch grob. Vollständig schlägt schön.
+5	1	5	Internes Review durch alle Co-Autoren	Mit Frist. Ohne Frist dauert diese Runde erfahrungsgemäß am längsten von allen.
+5	1	6	Anweisungen des Journals abgearbeitet	Formatvorgaben, Wortzahl, Meldebogen, Erklärungen. Formfehler kosten Tage, bevor überhaupt jemand liest.
+5	2	1	Eingereicht, Datum und Vorgangsnummer notiert	Ab hier liegt der Zeitplan nicht mehr in Ihrer Hand.
+5	2	2	Entscheidung eingetragen	Auch eine Ablehnung ist ein Ergebnis und gehört dokumentiert.
+5	2	3	Bei Überarbeitung: jeder Punkt beantwortet	Auch der, den Sie für unberechtigt halten. Eine Antwort darf widersprechen, aber sie darf nicht fehlen.
+5	2	4	Bei Ablehnung: innerhalb von zwei Wochen neu eingereicht	Der häufigste Grund, warum fertige Arbeiten nie erscheinen, ist Liegenbleiben.
+5	3	1	Daten und Unterlagen geordnet abgelegt	So, dass eine fremde Person in zwei Jahren nachvollziehen kann, was passiert ist.
+5	3	2	Drei Sätze: besser, schlechter, anders	Was lief besser als erwartet, was schlechter, was würden Sie anders machen. Mehr braucht es nicht.
+5	3	3	Erkenntnisse in die Wissensschicht eingetragen	Wiederkehrende Stolpersteine hier ergänzen — dann hilft diese Erfahrung dem nächsten Projekt.
