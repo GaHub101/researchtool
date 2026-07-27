@@ -8,367 +8,424 @@ direkt vor der jeweiligen Umsetzung.
 
 ---
 
-## 1. Rahmen der ersten Ausbaustufe
+## 1. Leitgedanke
+
+**Das System begleitet, es kontrolliert nicht.**
+
+Zielgruppe sind unerfahrene Forschende *und* unerfahrene Forschungsleitende. Beide
+brauchen keinen Wächter, der ihnen Knöpfe sperrt, sondern etwas, das ihnen zeigt,
+wie Forschung üblicherweise abläuft und woran man an ihrer Stelle als Nächstes
+denken würde.
+
+Daraus folgt die durchgehende Gestaltungsregel:
+
+> Das System **weiß**, wie ein Forschungsprojekt typischerweise läuft, und **sagt
+> es**. Entscheiden tun Menschen.
+
+Konkret heißt das:
+
+- **Nichts blockiert.** Es gibt keine gesperrten Knöpfe, keine erzwungene
+  Reihenfolge, keine Phase, die sich nicht abschließen lässt.
+- **Alles lässt sich überspringen.** Phasen dürfen parallel laufen, ausfallen
+  oder in anderer Reihenfolge stattfinden.
+- **Hinweise statt Fehlermeldungen.** Wo etwas fehlt oder ungewöhnlich aussieht,
+  steht ein ruhiger Satz, kein rotes Verbotsschild.
+- **Jeder Hinweis lässt sich wegklicken** — mit „passt so bei uns", und dann
+  kommt er nicht wieder. Ein Ratgeber, der sich nicht abstellen lässt, wird
+  ignoriert oder umgangen.
+- **Ein Projekt anzulegen kostet einen Titel.** Alles Weitere ist ergänzbar,
+  nichts ist Voraussetzung.
+
+Das Kompendium beschreibt in §9 und §10 ein streng regelgeführtes System mit
+Pflichtfeldern, Exit-Kriterien als Sperren und erzwungenen Freigaben. Dieser Plan
+übernimmt dessen **Fachwissen vollständig** — welche Phasen es gibt, was zu jeder
+gehört, wo die typischen Stolpersteine liegen — verwendet es aber als **Inhalt,
+nicht als Schranke**.
+
+---
+
+## 2. Die drei Schichten
+
+Das ganze System besteht aus drei Schichten, die klar auseinandergehalten werden.
+
+### Schicht 1 — Ablage
+
+Was gibt es, wo steht es. Projekte, Phasen, Ergebnisse, Aufgaben, Dokumente,
+Personen, Publikationsstand. Vollständig frei bearbeitbar.
+
+### Schicht 2 — Orientierung
+
+Was gehört üblicherweise dazu. Zu jeder Phase eine Checkliste mit Erklärung: Was
+ist der Sinn dieser Phase, was sollte am Ende vorliegen, was ist ein typischer
+Fehler, wie lange dauert das erfahrungsgemäß.
+
+Diese Schicht ist der eigentliche Wert für Unerfahrene. Sie ist Lernmaterial, das
+zum richtigen Zeitpunkt erscheint — nicht als Handbuch, das niemand liest, sondern
+als das, was gerade auf dem Bildschirm relevant ist.
+
+### Schicht 3 — Aufmerksamkeit
+
+Worauf sollte ich gerade schauen. Weiche Hinweise, für beide Zielgruppen getrennt
+formuliert:
+
+*Für Forschende:* „Die Datenerhebung läuft seit acht Monaten. Üblich sind etwa
+sechs. Gibt es etwas, das hakt?"
+
+*Für Forschungsleitende:* „Diese drei Projekte hast du seit sechs Wochen nicht
+geöffnet." — „Bei Projekt X steht die Ethikeinreichung an. Erfahrungsgemäß lohnt
+sich vorher ein gemeinsamer Blick auf das Protokoll."
+
+Schicht 3 ersetzt die Geschäftsregeln aus §10 des Kompendiums. Gleicher Inhalt,
+andere Wirkung: aus „darf nicht" wird „schau mal".
+
+---
+
+## 3. Wie aus Regeln Hinweise werden
+
+Jede Regel aus Kompendium §10 bleibt fachlich erhalten und wird zur Beobachtung.
+
+| Ursprüngliche Regel | Umsetzung als Hinweis |
+|---|---|
+| Keine Phasenaktivierung ohne Entry-Kriterien | Beim Start einer Phase erscheint einmalig, was üblicherweise vorher vorliegt. Startet trotzdem. |
+| Kein Phasenabschluss ohne Exit-Kriterien | Beim Abschließen: „Zwei Punkte der Checkliste sind offen — trotzdem abschließen?" Ja ist immer möglich. |
+| Keine Datenerhebung ohne Ethikvotum | Notiz auf der Projektakte: „Ethikvotum ist nicht hinterlegt." Sichtbar, aber ohne Sperre. Wegklickbar, wenn nicht ethikpflichtig. |
+| Keine finale Analyse ohne Datensatz-Freeze | Hinweis mit kurzer Erklärung, warum ein fester Datenstand vor der Auswertung sinnvoll ist. |
+| Kritische Änderungen erzeugen Change Requests | Entfällt im MVP. Änderungen am Protokoll landen in der Dokumenthistorie. |
+| Eskalation bei ausbleibendem Statusupdate | Kein Alarm an Vorgesetzte, sondern eine ruhige Sammelmail: „Diese Projekte melden sich länger nicht." |
+| Risiken mit festem Review-Termin | Optionales Datum. Wer keins setzt, wird nicht gemahnt. |
+
+Der Unterschied ist nicht kosmetisch. Ein gesperrter Knopf erzeugt bei
+Unerfahrenen Ratlosigkeit und Ausweichverhalten — man legt das Projekt eben
+außerhalb des Systems weiter. Ein erklärender Hinweis erzeugt Wissen.
+
+---
+
+## 4. Rahmen der ersten Ausbaustufe
 
 | Entscheidung | Festlegung |
 |---|---|
 | Plattform | FileMaker Pro Clients + **FileMaker Server** (Mehrbenutzer) |
-| Mindestversion | FileMaker 2023 (v20) oder neuer — wegen JSON-, UUID- und Container-Funktionen |
-| Datenumfang | **Nur Steuerungs- und Metadaten.** Keine Fallmatrix, keine personenbezogenen Studiendaten |
-| Funktionsumfang | **MVP nach Kompendium Kapitel 14.1** |
-| Vorgehen | Etappenweise, jede Etappe für sich lauffähig und abnehmbar |
+| Mindestversion | FileMaker 2023 (v20) oder neuer |
+| Datenumfang | **Nur Steuerungs- und Metadaten.** Keine personenbezogenen Studiendaten |
+| Funktionsumfang | MVP nach Kompendium §14.1, ergänzt um die Orientierungsschicht |
+| Vorgehen | Etappenweise, jede Etappe für sich nutzbar |
 
-### Was im MVP enthalten ist
+**Im MVP:** Projektakte · Phasen mit Checklisten und Erklärtexten · Ergebnisse ·
+Aufgaben · Dokumente mit Versionshistorie · Risiken und Blocker · Übersichtsseite
+· Publikationsstand · Hinweis-Schicht · Verlaufsprotokoll.
 
-Projektstammdaten · Phasen-Engine · Deliverables · Tasks · Dokumente mit
-Versionierung · Risiko- und Blocker-Modul · Basis-Dashboard · Publikationsstatus
-· Audit-Log · Rollen- und Rechtekonzept.
-
-### Was bewusst später kommt
-
-Variablenregister und Codebook (§9.9) · Analysepakete (§9.10) · Change Requests
-· Lessons Learned · vollständige EthicsSubmissions-Historie · Schnittstellen zu
-Literaturverwaltung oder klinischen Datenquellen · Projekttemplates je Fachgebiet.
-
-### Eine Ausnahme von der MVP-Grenze
-
-Das Kompendium formuliert in §10 die harte Regel *„keine Datenerhebung ohne
-regulatorische Freigabe"*. Diese Regel lässt sich nicht durchsetzen, wenn der
-Freigabestatus nirgends steht. Deshalb wandern **fünf Ethik-Felder direkt in die
-Projekttabelle** (Ethikpflicht ja/nein, Aktenzeichen, Einreichungsdatum,
-Freigabedatum, Geltungsbereich). Die vollständige `EthicsSubmissions`-Tabelle mit
-Rückfragen- und Amendment-Historie folgt in Stufe 2 — die Felder werden dann
-migriert, nicht neu erfunden.
+**Später:** Variablenregister und Codebook (§9.9) · Analysepakete (§9.10) ·
+vollständige Ethik-Historie · Change Requests · Lessons Learned · Schnittstellen.
 
 ---
 
-## 2. Grundsatzentscheidungen für FileMaker
+## 5. Technische Grundsatzentscheidungen
 
-Diese Entscheidungen prägen alles Weitere und sind nachträglich teuer zu ändern.
+Diese Punkte sind unabhängig von der Strenge des Systems und nachträglich teuer
+zu ändern.
 
-### 2.1 Eine Datei, nicht mehrere
+### 5.1 Eine Datei
 
-Da keine Patientendaten gespeichert werden, gibt es keinen Grund zur
-Dateitrennung. **Eine `.fmp12`-Datei** hält Schema, Daten und Oberfläche. Falls
-später identifizierende Daten dazukommen, wird eine zweite Datei angehängt — die
-UUID-Schlüssel (siehe 2.3) machen das problemlos.
+Ohne Patientendaten gibt es keinen Grund zur Dateitrennung. Eine `.fmp12`-Datei
+hält Schema, Daten und Oberfläche.
 
-### 2.2 Anchor-Buoy im Beziehungsdiagramm
+### 5.2 Anchor-Buoy im Beziehungsdiagramm
 
-Pro Kontext (Projekt, Phase, Deliverable, Task, Dokument, Risiko, Manuskript) ein
-eigener Anker mit den daran hängenden Tabellenauftreten. Kein
-Beziehungsdiagramm-Spaghetti, keine Mehrfachnutzung von Tabellenauftreten über
-Kontexte hinweg. Der Graph wird dadurch groß, aber lesbar und wartbar.
+Pro Kontext ein eigener Anker mit den daran hängenden Tabellenauftreten. Der Graph
+wird groß, aber lesbar und wartbar.
 
-### 2.3 UUID statt fortlaufender Nummer
+### 5.3 UUID als Primärschlüssel
 
-Alle Primärschlüssel als `Get(UUID)` mit Auto-Eingabe, nicht änderbar.
-Grund: Import von Templates, spätere Zusammenführung von Dateien und
-Datensatz-Duplizierung bleiben konfliktfrei. Fortlaufende Nummern gibt es
-zusätzlich nur dort, wo Menschen sie lesen (Projektcode wie `2026-014`).
+Alle Schlüssel als `Get(UUID)`, nicht änderbar. Macht Vorlagenimport, spätere
+Dateizusammenführung und Duplizierung konfliktfrei. Zusätzlich ein lesbarer
+Projektcode (`2026-014`) für Menschen.
 
-### 2.4 Namenskonvention
+### 5.4 Namenskonvention
 
 ```
 __pkProjectID      Primärschlüssel
 _fkProjectID       Fremdschlüssel
 Status             normales Feld
-c_PhaseAging       Berechnungsfeld (unstored)
+c_PhaseAging       Berechnungsfeld (nicht gespeichert)
 s_PhaseAging       per Script gesetzter, gespeicherter Wert
 g_CurrentProjectID globales Feld
 zz_Utility         Hilfstabelle
 ```
 
-Konsequent durchgehalten, ohne Ausnahmen. Das spart bei jeder späteren
-Erweiterung Suchzeit.
+Ohne Ausnahmen durchgehalten.
 
-### 2.5 Status wird nie direkt bearbeitet
+### 5.5 Checklistenpunkte sind Datensätze, keine Textfelder
 
-**Zentrale Designentscheidung.** Statusfelder sind auf allen Layouts
-schreibgeschützt. Jeder Statuswechsel läuft ausschließlich über ein Script mit
-Button. Das Script prüft die Geschäftsregel, führt sie aus oder verweigert sie
-mit Begründung, und schreibt den Audit-Eintrag.
+Jeder Punkt einer Phasen-Checkliste ist ein eigener Datensatz mit Erklärtext,
+Erledigt-Kennzeichen und Notizfeld.
 
-Nur so sind die Regeln aus §10 überhaupt durchsetzbar. Ein Popup-Feld mit
-Werteliste lässt sich immer umgehen; ein Script nicht.
+Das bleibt auch im lockeren System die richtige Struktur — aus einem anderen
+Grund als vorher. Nicht, damit ein Script Sperren berechnen kann, sondern damit
+die **Erklärung am einzelnen Punkt hängt** und der Fortschritt sichtbar wird. Ein
+Fließtextfeld kann weder erklären noch anzeigen, wie weit man ist.
 
-### 2.6 Kriterien sind Datensätze, keine Textfelder
+### 5.6 Kennzahlen vorberechnen
 
-Entry- und Exit-Kriterien einer Phase liegen als eigene Tabelle
-(`PhaseCriteria`) vor: ein Datensatz pro Kriterium, mit Typ (Entry/Exit),
-Pflichtkennzeichen, Erfüllt-Flag, Erfüllt-von und Erfüllt-am.
+Nicht gespeicherte Berechnungen sind in Listen langsam und weder sortier- noch
+durchsuchbar. Deshalb zweigleisig: in der Detailansicht live gerechnet, für
+Übersicht und Listen nächtlich in gespeicherte `s_`-Felder geschrieben.
 
-Als Freitextfeld wären Exit-Kriterien dekorativ. Als Datensatzliste sind sie
-maschinell prüfbar — das Abschluss-Script zählt einfach die offenen Pflicht-
-kriterien. Das ist der Unterschied zwischen einer Phasen-Engine und einer
-Notizzettel-Datenbank.
+### 5.7 Verlaufsprotokoll statt Audit-Log
 
-### 2.7 Kennzahlen vorberechnen, nicht live rechnen
+Statt eines lückenlosen Feld-für-Feld-Protokolls ein **lesbarer Verlauf** je
+Projekt: „14.03. — Phase Datenerhebung gestartet (M. Weber)", „02.04. — Protokoll
+v3 hochgeladen".
 
-Ungespeicherte Berechnungsfelder (Phase-Aging, Ampelstatus, Plan-Ist-Abweichung)
-sind in Listenansichten und Portalen langsam und lassen sich weder sortieren noch
-suchen. Deshalb zweigleisig:
+Für ein begleitendes System ist das die passende Form. Es dient dem Verstehen
+(„was ist hier eigentlich passiert?") und ist für neue Beteiligte und für die
+Betreuung nützlich — nicht der Kontrolle. Wird per Script an den relevanten
+Stellen geschrieben, nicht durch flächendeckende Überwachung.
 
-- **Detailansicht:** ungespeicherte Berechnung, immer aktuell.
-- **Dashboard und Listen:** ein nächtliches Server-Script schreibt dieselben
-  Werte in gespeicherte `s_`-Felder. Sortierbar, suchbar, schnell.
+Wo später echte Nachweispflicht entsteht (Ethik, Publikation), lässt sich für
+diese Objekte gezielt ein strengeres Protokoll ergänzen.
 
-### 2.8 Audit-Log von Anfang an
+### 5.8 Entwickeln mit dem Data Migration Tool
 
-Eine `AuditLog`-Tabelle mit Zeitstempel, Konto, Tabelle, Datensatz-UUID, Feld,
-Alt-Wert, Neu-Wert, Auslöser.
-
-Beschrieben wird sie primär durch die Statuswechsel- und Freigabe-Scripts.
-Zusätzlich ein `OnRecordCommit`-Trigger auf den Kernlayouts, der einen
-JSON-Schnappschuss der überwachten Felder vergleicht.
-
-**Bekannte Grenze:** Script-Trigger hängen am Layout. Änderungen per Import oder
-über ein Layout ohne Trigger werden nicht protokolliert. Deshalb gilt als Regel:
-Datenänderungen laufen über die dafür vorgesehenen Layouts, Importe nur durch die
-Administration und mit eigenem Log-Eintrag.
-
-### 2.9 Entwickeln mit dem Data Migration Tool
-
-Sobald das System produktiv Daten enthält, wird nicht mehr an der Live-Datei
-geschraubt. Ablauf: Entwicklungskopie ändern → `FMDataMigration` überträgt die
-Produktivdaten in die neue Struktur → Austausch im Wartungsfenster. Das gehört ab
-Etappe 1 zur Routine, nicht erst wenn es weh tut.
+Ab dem ersten Echtdatensatz nicht mehr an der Live-Datei schrauben:
+Entwicklungskopie ändern, `FMDataMigration` überträgt die Produktivdaten, Tausch
+im Wartungsfenster.
 
 ---
 
-## 3. Datenmodell des MVP
+## 6. Datenmodell des MVP
 
-### 3.1 Tabellen
+### 6.1 Tabellen
 
 **Stammdaten**
-- `Projects` — Projektakte inkl. der fünf Ethik-Felder
-- `ProjectTypes` — Studiendesign/Vorhabentyp, steuert die Phasenvorlage
-- `People` — Personenstammdaten
-- `Roles` — Rollentypen (PI, Projektführung, Datenerheber, Statistik, Regulatory, Co-Autor, Koordination)
-- `ProjectPeople` — Zuordnung Person ↔ Projekt ↔ Rolle, inkl. RACI-Kennzeichen
+- `Projects` — Projektakte. Ein Pflichtfeld: Titel. Alles andere optional.
+- `ProjectTypes` — Vorhabentyp, wählt die passende Phasenvorlage vor
+- `People`, `Roles`, `ProjectPeople` — wer ist mit welcher Rolle beteiligt
 
-**Phasen-Engine**
-- `PhaseTemplates` — Katalog der Standardphasen je Projekttyp
-- `Phases` — Phaseninstanzen je Projekt
-- `PhaseCriteria` — Entry-/Exit-Kriterien als prüfbare Datensätze
+**Ablauf**
+- `PhaseTemplates` — Katalog der üblichen Phasen je Vorhabentyp, mit Erklärtexten
+- `Phases` — Phasen des konkreten Projekts, frei anleg- und löschbar
+- `ChecklistItems` — Checklistenpunkte mit Erklärung, Vorlage und Instanz
 
 **Arbeitsebene**
-- `Deliverables` + `DeliverableTemplates`
-- `Tasks`
+- `Deliverables` — Ergebnisse, die am Ende einer Phase vorliegen sollten
+- `Tasks` — einzelne Aufgaben
 
 **Nachweise und Steuerung**
 - `Documents` + `DocumentVersions`
-- `Risks`
-- `Manuscripts` + `Submissions`
-- `AuditLog`
-- `zz_Utility` — ein Datensatz, hält globale Felder und Systemeinstellungen
+- `Risks` — was gerade hakt
+- `Manuscripts` + `Submissions` — Publikationsstand
+- `Nudges` — erzeugte Hinweise inkl. „weggeklickt"-Kennzeichen
+- `ActivityLog` — Verlaufsprotokoll
+- `zz_Utility` — globale Felder und Einstellungen
 
-### 3.2 Kernbeziehungen
+### 6.2 Kernbeziehungen
 
 ```
 ProjectTypes ──< Projects ──< Phases ──< Deliverables ──< Tasks
-                    │            └──< PhaseCriteria
+                    │            └──< ChecklistItems
                     ├──< ProjectPeople >── People >── Roles
                     ├──< Documents ──< DocumentVersions
                     ├──< Risks
-                    └──< Manuscripts ──< Submissions
+                    ├──< Manuscripts ──< Submissions
+                    ├──< Nudges
+                    └──< ActivityLog
 ```
 
-`Tasks` hängen laut §9.5 an einer Phase **oder** einem Deliverable. Umsetzung:
-zwei Fremdschlüssel, wobei `_fkPhaseID` immer gefüllt ist und `_fkDeliverableID`
-optional. So bleibt jede Aufgabe eindeutig einer Phase zugeordnet und das
-Phasen-Fortschrittsmaß bleibt berechenbar.
+Aufgaben hängen an einer Phase oder direkt am Projekt — beides erlaubt. Wer ohne
+Phasenstruktur arbeiten will, kann das.
 
-### 3.3 Template-Mechanik
+### 6.3 Vorlagen
 
-`PhaseTemplates` und `DeliverableTemplates` sind Vorlagenkataloge, keine
-Projektdaten. Beim Anlegen eines Projekts kopiert ein Script anhand des
-Projekttyps die passenden Vorlagen in `Phases`, `PhaseCriteria` und
-`Deliverables`. Ab dann sind die Instanzen unabhängig — eine spätere
-Vorlagenänderung verändert laufende Projekte nicht.
+Beim Anlegen eines Projekts schlägt das System anhand des Vorhabentyps die
+üblichen Phasen samt Checklisten vor. Der Vorschlag erscheint zur **Bestätigung**,
+nicht als Automatik: Phasen lassen sich vorher abwählen, später ergänzen oder
+löschen.
 
-Das erfüllt §12 („Automatische Anlage von Standardphasen bei Projektstart") und
-hält gleichzeitig die Nachvollziehbarkeit sauber.
+Wer den Vorschlag ganz ablehnt, bekommt ein leeres Projekt. Auch das ist ein
+gültiger Zustand.
 
 ---
 
-## 4. Geschäftsregeln und ihre technische Verankerung
+## 7. Die Wissensschicht
 
-| Regel (§10) | Umsetzung |
-|---|---|
-| Keine Phasenaktivierung ohne Entry-Kriterien | Script `Phase_Aktivieren` zählt offene Pflicht-Entry-Kriterien |
-| Kein Phasenabschluss ohne Exit-Kriterien und Deliverables | Script `Phase_Abschliessen` prüft Kriterien **und** Deliverable-Status |
-| Keine Datenerhebung ohne regulatorische Freigabe | `Phase_Aktivieren` sperrt die Phase „Datenerhebung", solange `Ethikpflicht = ja` und `Freigabedatum` leer ist |
-| Kein Statuswechsel unter Umgehung der Regeln | Statusfelder layoutseitig gesperrt, Wechsel nur per Script (2.5) |
-| Eskalation bei ausbleibendem Statusupdate | Server-Script prüft nächtlich `Letztes Update` gegen die Frist |
-| Risiken mit festem Review-Termin | Pflichtfeld `Review-Datum`, Server-Script meldet Überschreitung |
-| Audit-Log bei relevanten Änderungen | Scripts + Commit-Trigger (2.8) |
+Das ist der Teil, der das System für Unerfahrene wertvoll macht — und der Teil,
+der die meiste inhaltliche Arbeit kostet.
 
-Die Regeln aus §10, die Analyse und Change Requests betreffen, greifen erst mit
-den Modulen der Stufe 2.
+Zu jeder der zwölf Phasen aus §6.1 des Kompendiums gehört hinterlegt:
+
+- **Wozu diese Phase da ist** — zwei, drei Sätze
+- **Was am Ende vorliegen sollte** — die Checkliste, jeder Punkt einzeln erklärt
+- **Typische Stolpersteine** — was hier erfahrungsgemäß schiefgeht
+- **Übliche Dauer** — als Orientierung, nicht als Vorgabe. Die Zahlen aus §1 des
+  Kompendiums (2 Monate Projektentwicklung, 6 Monate Datenerhebung, 2 Monate
+  Schreiben, 4 Monate Publikation) sind der Ausgangspunkt
+- **Betreuungshinweis** — worauf eine Forschungsleitung an dieser Stelle schauen
+  sollte, und was sich lohnt, im nächsten Gespräch anzusprechen
+
+Diese Inhalte liegen als Daten in `PhaseTemplates` und `ChecklistItems`, nicht im
+Programmcode. Sie sind damit ohne Entwicklungsaufwand pflegbar und wachsen mit der
+eigenen Erfahrung: Was sich als wiederkehrender Stolperstein herausstellt, wird
+ergänzt und hilft beim nächsten Projekt.
 
 ---
 
-## 5. Rollen und Rechte
+## 8. Rollen und Rechte
 
-**Fünf Privilege Sets:**
+Bewusst schlank. Ein begleitendes System, das Leute aussperrt, widerspricht sich
+selbst.
 
 | Set | Umfang |
 |---|---|
-| Administration | Vollzugriff inkl. Schema und Vorlagenpflege |
-| PI / Betreuung | Alle Projekte lesen, Freigaben erteilen, Phasen abschließen |
-| Projektführung | Eigene Projekte voll bearbeiten, keine Freigaben |
-| Mitarbeit | Tasks und Deliverables der zugewiesenen Projekte bearbeiten |
-| Lesen | Nur Ansicht und Export |
+| Administration | Vollzugriff inkl. Schema und Pflege der Wissensschicht |
+| Standard | Alles sehen, eigene und zugewiesene Projekte bearbeiten |
+| Gast | Lesen und Export |
 
-Das Kompendium fordert in §8.2 vier Rechteebenen (Lesen, Bearbeiten, Freigeben,
-Administrieren). Diese Ebenen bilden die Sets ab; „Freigeben" ist dabei kein
-FileMaker-Recht, sondern die Berechtigung, die Freigabe-Scripts auszuführen —
-geprüft über `Get(AccountPrivilegeSetName)`.
+Die Rollen aus §8.1 des Kompendiums (PI, Projektführung, Datenerhebung, Statistik,
+Regulatory, Co-Autor, Koordination) bleiben als **fachliche Zuordnung** in
+`ProjectPeople` erhalten. Sie beantworten „wer kümmert sich", nicht „wer darf
+klicken", und steuern, wer welchen Hinweis bekommt.
 
-**Datensatzbezogene Einschränkung** (nur eigene Projekte sehen) ist in FileMaker
-über berechnete Zugriffsrechte möglich, kostet aber Performance und erschwert
-Auswertungen. Für das MVP deshalb: Sichtbarkeit über gefilterte Layouts und
-Suchen steuern, echte Record-Level-Access-Regeln erst bei belegtem Bedarf.
-
-Die RACI-Zuordnung aus §8.1 liegt fachlich in `ProjectPeople` und ist unabhängig
-vom technischen Rechtesystem — sie beantwortet „wer ist zuständig", nicht „wer
-darf klicken".
+Datensatzbezogene Zugriffsbeschränkungen bleiben vorerst außen vor: sie kosten
+Performance, erschweren Auswertungen und lösen ein Problem, das hier nicht besteht.
 
 ---
 
-## 6. Oberfläche
+## 9. Oberfläche
 
-Ein Layout-Set pro Kontext, konsistent aufgebaut:
+- **Übersichtsseite** — alle Projekte mit Titel, Zuständigen, aktueller Phase,
+  Stimmungsbild, nächstem Termin. Statt einer Ampel mit Verbotscharakter eine
+  ruhige Kennzeichnung: läuft · stockt · ruht · abgeschlossen.
+- **Projektakte** — Kopfbereich, darunter Reiter für Phasen, Ergebnisse,
+  Aufgaben, Dokumente, Risiken, Publikation, Verlauf. Rechts eine schmale Spalte
+  „Hinweise" mit den offenen Punkten aus Schicht 3, jeder einzeln wegklickbar.
+- **Phasenansicht** — links die Checkliste mit Erklärtexten, rechts Ergebnisse und
+  Aufgaben. Der Erklärtext steht sichtbar da, nicht hinter einem Fragezeichen.
+- **Arbeitslisten** — „Meine Aufgaben", „Was steht an", „Was stockt".
+- **Betreuungsansicht** — eigene Seite für Forschungsleitende: welche Projekte
+  länger nichts gemeldet haben, wo eine Phase ungewöhnlich lange läuft, was sich
+  fürs nächste Gespräch lohnt.
 
-- **Portfolio-Cockpit** — Listenansicht aller Projekte mit Ampel, aktueller
-  Phase, nächstem Meilenstein, Blockerzahl (§9.1). Arbeitet auf den
-  vorberechneten `s_`-Feldern.
-- **Projektakte** — Kopfbereich mit Stammdaten, darunter Registerkarten für
-  Phasen, Deliverables, Tasks, Dokumente, Risiken, Publikation.
-- **Phasen-Detail** — Kriterienliste, Deliverables, Statusbuttons.
-- **Arbeitslisten** — „Meine Tasks", „Fällig in 30/60/90 Tagen", „Aktive
-  Blocker", „Wartet auf Freigabe".
-- **Dialoge** als Card-Fenster, nicht als eigene Layouts im Fenster.
-
-Bedienregel: Statuswechsel immer als beschrifteter Button mit Rückmeldung, nie
-als stilles Feld.
-
----
-
-## 7. Automationen auf dem Server
-
-Ein nächtlicher Server-Zeitplan („Nachtlauf") führt aus:
-
-1. Kennzahlen neu berechnen und in die `s_`-Felder schreiben
-2. Ampelstatus je Projekt setzen
-3. Überfällige Deliverables und Tasks markieren
-4. Projekte ohne Statusupdate innerhalb der Frist eskalieren
-5. Fällige Risiko-Reviews melden
-6. Benachrichtigungsmail an Verantwortliche versenden
-
-Zusätzlich ein wöchentlicher Lauf für den Portfolio-Report an die Betreuung.
-
-Rechenintensive Aktionen aus dem Client (Projektanlage aus Vorlage,
-Dashboard-Aufbau) laufen über *Perform Script on Server*, nicht lokal.
+Grundton der Texte: sachlich und knapp, ohne Ausrufezeichen. „Läuft seit acht
+Monaten" statt „ÜBERFÄLLIG!".
 
 ---
 
-## 8. Bau-Reihenfolge
+## 10. Automationen
 
-Jede Etappe endet mit einem lauffähigen Stand und einem prüfbaren Ergebnis.
+Ein nächtlicher Serverlauf:
+
+1. Kennzahlen neu berechnen
+2. Hinweise erzeugen und veraltete zurückziehen
+3. Verlaufsprotokoll verdichten
+
+Dazu ein **wöchentlicher Sammelversand** — eine ruhige Mail pro Person mit dem,
+was ansteht, statt Einzelbenachrichtigungen bei jedem Ereignis. Abschaltbar.
+
+Rechenintensives (Projektanlage aus Vorlage, Übersichtsaufbau) läuft über
+*Perform Script on Server*.
+
+---
+
+## 11. Bau-Reihenfolge
+
+Jede Etappe endet mit einem nutzbaren Stand.
 
 ### Etappe 0 — Fundament
-Datei anlegen, Namenskonvention festschreiben, `zz_Utility` mit globalen Feldern,
-Konten und die fünf Privilege Sets, Server-Ablage, Sicherungsplan, EAR aktivieren.
-*Abnahme:* Datei liegt auf dem Server, Anmeldung mit jedem Set funktioniert.
+Datei, Namenskonvention, Hilfstabelle, Konten und drei Rechtesets, Serverablage,
+Sicherungsplan.
+*Ergebnis:* Datei liegt auf dem Server, Anmeldung funktioniert.
 
-### Etappe 1 — Stammdaten
-`Projects`, `ProjectTypes`, `People`, `Roles`, `ProjectPeople`. Pflichtfelder
-nach §9.2. Projektakte-Layout mit Kopfbereich und Beteiligtenliste.
-`AuditLog`-Tabelle und Protokoll-Script als Infrastruktur.
-*Abnahme:* Ein Projekt lässt sich vollständig anlegen, Beteiligte zuordnen,
-Änderungen erscheinen im Audit-Log.
+### Etappe 1 — Projekte und Personen
+`Projects`, `ProjectTypes`, `People`, `Roles`, `ProjectPeople`, `ActivityLog`.
+Projektakte mit Kopfbereich und Beteiligten. Schnellanlage: Titel eingeben, fertig.
+*Ergebnis:* Projekte lassen sich anlegen und Beteiligte zuordnen.
 
-### Etappe 2 — Phasen-Engine *(Kernstück)*
-`PhaseTemplates`, `Phases`, `PhaseCriteria`. Die zwölf Standardphasen aus §6.1 als
-Vorlage. Scripts `Projekt_Initialisieren`, `Phase_Aktivieren`,
-`Phase_Abschliessen`, `Phase_Blockieren` mit vollständiger Regelprüfung.
-*Abnahme:* Neues Projekt erzeugt automatisch alle Phasen; eine Phase lässt sich
-nachweislich nicht abschließen, solange ein Pflicht-Exit-Kriterium offen ist.
+### Etappe 2 — Phasen
+`PhaseTemplates`, `Phases`, `ChecklistItems`. Die zwölf Standardphasen als
+Vorlage. Vorschlagsdialog bei Projektanlage, frei anpassbar.
+*Ergebnis:* Ein neues Projekt bekommt auf Wunsch seine Phasen; sie lassen sich
+umsortieren, ergänzen, löschen.
 
-### Etappe 3 — Deliverables
-`Deliverables`, `DeliverableTemplates`, Freigabe-Workflow mit Owner und Reviewer,
-Verknüpfung in die Phasen-Abschlussprüfung.
-*Abnahme:* Phasenabschluss scheitert bei nicht freigegebenem Pflicht-Deliverable.
+### Etappe 3 — Wissensschicht *(inhaltliches Kernstück)*
+Erklärtexte, Checklistenpunkte, Stolpersteine, Dauerwerte und Betreuungshinweise
+für alle zwölf Phasen einpflegen. Anzeige in der Phasenansicht.
+*Ergebnis:* Wer eine Phase öffnet, sieht ohne Nachfragen, worum es geht und was
+dazugehört. Diese Etappe ist überwiegend Schreibarbeit, keine Entwicklung.
 
-### Etappe 4 — Tasks
-`Tasks` mit Zuordnung, Termin, Priorität, Abhängigkeiten, Kommentarverlauf.
-Arbeitsliste „Meine Tasks".
-*Abnahme:* Aufgaben sind zuweisbar, Fortschritt schlägt auf die Phase durch.
+### Etappe 4 — Ergebnisse und Aufgaben
+`Deliverables`, `Tasks`, Arbeitsliste „Meine Aufgaben".
+*Ergebnis:* Aufgaben sind zuweisbar, Fortschritt wird sichtbar.
 
-### Etappe 5 — Dokumente und Versionen
-`Documents` + `DocumentVersions`, Container mit External Secure Storage,
-Freigabestatus, Historie, Verknüpfung zu Projekt/Phase/Deliverable.
-*Abnahme:* Eine neue Version verdrängt die alte nicht, sondern ergänzt sie; die
-Historie ist vollständig nachvollziehbar.
+### Etappe 5 — Dokumente
+`Documents` + `DocumentVersions`, Ablage mit External Secure Storage, Historie.
+*Ergebnis:* Eine neue Version ergänzt die alte, statt sie zu ersetzen.
 
-### Etappe 6 — Risiken, Blocker, Ethik-Sperre
-`Risks` nach §9.7, Blockerkennzeichen auf Phasenebene, Aktivierung der
-Ethik-Sperrregel aus §9.8.
-*Abnahme:* Ein freigabepflichtiges Projekt ohne Freigabedatum kann die
-Datenerhebungsphase nicht starten.
+### Etappe 6 — Risiken und Blocker
+`Risks`, schlank gehalten: was hakt, wer kümmert sich, seit wann.
+*Ergebnis:* Stockende Projekte sind auf der Übersicht erkennbar.
 
-### Etappe 7 — Publikationsstatus
-`Manuscripts` und `Submissions` mit den neun Statuswerten aus §9.11,
-Autorenreihenfolge, Revisionsrunden.
-*Abnahme:* Ein Projekt lässt sich von Draft bis Published durchgehend abbilden.
+### Etappe 7 — Hinweis-Schicht
+`Nudges`, Regeln aus Kapitel 3, Wegklick-Mechanik, Hinweisspalte in der
+Projektakte.
+*Ergebnis:* Das System meldet sich von selbst — und lässt sich beruhigen.
 
-### Etappe 8 — Dashboard und Automationen
-Portfolio-Cockpit, Fristenlisten, Blocker-Übersicht, Publikationspipeline.
-Nachtlauf und Wochenreport auf dem Server.
-*Abnahme:* Kennzahlen aus §11 stimmen mit den Detaildaten überein; der Nachtlauf
-läuft ohne Eingriff durch.
+### Etappe 8 — Publikationsstand
+`Manuscripts`, `Submissions` mit den Statuswerten aus §9.11.
+*Ergebnis:* Der Weg von Draft bis Published ist abbildbar.
 
-### Etappe 9 — Härtung und Rollout
-Rechte-Feinschliff, Validierungsregeln, Export nach Excel/PDF, Testlauf mit zwei
-echten Projekten, Kurzdokumentation für Anwender.
-*Abnahme:* Produktivfreigabe.
+### Etappe 9 — Übersicht, Betreuungsansicht, Serverlauf
+Übersichtsseite, Betreuungsansicht, Arbeitslisten, Nachtlauf, Wochenmail.
+*Ergebnis:* Die Übersicht stimmt mit den Detaildaten überein, der Nachtlauf läuft
+ohne Eingriff.
+
+### Etappe 10 — Feinschliff und Einführung
+Texte überarbeiten, Export nach Excel und PDF, Testlauf mit zwei echten
+Projekten, kurze Anleitung für Anwender.
+*Ergebnis:* produktiv nutzbar.
+
+Die Reihenfolge ist bewusst so gewählt, dass nach Etappe 3 bereits der
+inhaltliche Kernnutzen steht — Orientierung für Unerfahrene — auch wenn Aufgaben,
+Dokumente und Übersicht noch fehlen.
 
 ---
 
-## 9. Arbeitsweise
+## 12. Arbeitsweise
 
-`.fmp12`-Dateien sind Binärformat und lassen sich nur in FileMaker Pro selbst
-erzeugen. Die Arbeitsteilung sieht deshalb so aus:
+`.fmp12`-Dateien sind Binärformat und entstehen nur in FileMaker Pro selbst.
+Deshalb:
 
-**Im Repository entsteht pro Etappe:**
-- die Detailspezifikation (Feldliste mit Typen, Beziehungen, Validierungen)
-- alle Berechnungsformeln zum Kopieren
-- die Script-Schritte in ausführbarer Reihenfolge
-- Layout-Aufbau und Rechtematrix
-- Import-fertige CSV-Dateien für Vorlagen und Wertelisten
+**Im Repository entsteht pro Etappe:** Detailspezifikation mit Feldliste und
+Typen, Berechnungsformeln zum Kopieren, Script-Schritte in ausführbarer
+Reihenfolge, Layout-Aufbau, Import-fertige CSV-Dateien für Vorlagen, Wertelisten
+und die Wissensschicht.
 
 **In FileMaker Pro passiert:** der Nachbau anhand dieser Anleitung.
 
-Damit ist jede Etappe reproduzierbar, versioniert und überprüfbar — und der
-Aufbau bleibt dokumentiert, auch wenn später jemand anderes daran arbeitet.
+So bleibt jede Etappe reproduzierbar und dokumentiert, auch wenn später jemand
+anderes daran arbeitet.
 
 ---
 
-## 10. Offene Punkte vor Etappe 0
+## 13. Offene Punkte
 
-1. **FileMaker-Version und Lizenzen** — welche Serverversion steht bereit, wie
-   viele gleichzeitige Nutzer?
-2. **Projekttypen** — welche Studiendesigns sollen anfangs hinterlegt sein? Davon
-   hängen die Phasenvorlagen ab.
-3. **Phasenvorlagen** — die zwölf Phasen aus §6.1 für alle Typen gleich, oder je
-   Typ abweichend?
-4. **Eskalationsfristen** — nach wie vielen Tagen ohne Statusupdate wird
-   eskaliert, an wen?
-5. **Mailversand** — steht ein SMTP-Zugang für die Benachrichtigungen bereit?
-6. **Dokumentablage** — Dateien in FileMaker-Containern oder nur Verweise auf
-   einen bestehenden Netzwerkspeicher?
+**Vor Etappe 2:**
+1. Welche Vorhabentypen sollen hinterlegt sein — retrospektive Auswertung,
+   prospektive Studie, Fallserie, Review, Qualifikationsarbeit?
+2. Gelten die zwölf Phasen für alle Typen gleich, oder braucht ein Review eine
+   kürzere Kette?
 
-Punkte 2 bis 4 werden spätestens vor Etappe 2 gebraucht, die übrigen vor
-Etappe 5 beziehungsweise 8.
+**Vor Etappe 3 (Wissensschicht):**
+3. Wer schreibt die Erklärtexte und Stolpersteine? Ich kann Entwürfe je Phase
+   vorlegen, die fachliche Prüfung und der eigene Erfahrungsschatz müssen von
+   Ihnen kommen — das ist der Teil, der das System vom Lehrbuch unterscheidet.
+4. Sollen die Dauerwerte aus dem Kompendium (2/6/2/4 Monate) als Ausgangswerte
+   dienen, oder gibt es eigene Erfahrungswerte?
+
+**Vor Etappe 7 und 9:**
+5. Ab wann gilt ein Projekt als „meldet sich länger nicht" — vier Wochen, acht?
+6. Steht ein SMTP-Zugang für die Wochenmail bereit?
+7. Dokumente in FileMaker-Containern oder nur Verweise auf einen bestehenden
+   Netzwerkspeicher?
+
+**Technisch:**
+8. Welche FileMaker-Serverversion steht bereit, wie viele gleichzeitige Nutzer?
