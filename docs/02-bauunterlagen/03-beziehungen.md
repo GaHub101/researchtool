@@ -1,6 +1,6 @@
 # Beziehungsdiagramm und Bezugsformeln
 
-**26 Beziehungen, 33 Tabellenauftreten, 7 Anker.**
+**26 Beziehungen, 33 Tabellenauftreten, 7 Anker.** Alle Bezeichner deutsch.
 
 ## Grundsatz: filtern im Portal, nicht im Diagramm
 
@@ -13,35 +13,32 @@ Hilfsfeldern, hält das Diagramm lesbar und ist schneller gebaut. Die
 Filterformeln stehen in [`04-formeln.md`](04-formeln.md) unter F-20.
 
 Eigene Tabellenauftreten gibt es nur dort, wo FileMaker sie zwingend braucht:
-für `Sum()`- und `Count()`-Berechnungen und für die Navigation in Skripten.
+für `Summe()`-Berechnungen und für die Navigation in Skripten.
 
 ## Anordnung im Diagramm
 
 Sieben Anker nebeneinander, die zugehörigen Auftreten jeweils darunter
-(Anchor-Buoy). Kein Auftreten wird über Ankergrenzen hinweg wiederverwendet —
-auch wenn es technisch ginge. Der Graph wird dadurch breiter, aber man sieht
-jedem Layout an, aus welchem Kontext es kommt.
+(Anchor-Buoy). Kein Auftreten wird über Ankergrenzen hinweg wiederverwendet, auch
+wenn es technisch ginge. Der Graph wird dadurch breiter, aber man sieht jedem
+Layout an, aus welchem Kontext es kommt.
 
 ```
-PROJEKT      ABSCHNITT    SCHRITT    DOKUMENT    MANUSKRIPT   VORLAGE    PERSON
-Projects     Sections     Steps      Documents   Manuscripts  Section-   People
- ├Sections    ├Steps       └Check-    └Document-   └Submis-    Templates   ├Project-
- ├Steps       ├Check-        list-      Versions     sions      ├Step-     │ People
- ├Checklist-  │ Items        Items                              │Templates └Tasks
- │ Items      ├Deliver-                                         └Checklist-
- ├Deliver-    │ ables                                            Templates
- │ ables      ├Tasks
- ├Tasks       ├Projects
- ├Documents   └zz_Utility
- ├Risks
- ├Manuscripts
- ├Nudges
- ├ActivityLog
- ├Project-
- │ People
- │ ├People
- │ └Roles
- └zz_Utility
+PROJEKT         ABSCHNITT     SCHRITT   DOKUMENT      MANUSKRIPT      VORLAGE           PERSON
+Projekte        Abschnitte    Schritte  Dokumente     Manuskripte     VorlageAbschnitte Personen
+ ├Abschnitte     ├Schritte     └Punkte   └Versionen    └Einreichungen  ├Schritte         └Aufgaben
+ ├Schritte       ├Punkte                                               └Punkte
+ ├Punkte         ├Ergebnisse
+ ├Ergebnisse     ├Aufgaben
+ ├Aufgaben       ├Projekte
+ ├Dokumente      └Einstellungen
+ ├Risiken
+ ├Manuskripte
+ ├Hinweise
+ ├Verlauf
+ ├Beteiligte
+ │ ├Personen
+ │ └Rollen
+ └Einstellungen
 ```
 
 ---
@@ -53,29 +50,29 @@ Kontext der Layouts `01 Mein Projekt`, `02 Meine Projekte`, `03 Projektakte`,
 
 | Nr | Auftreten | Bezugsformel | Optionen |
 |---|---|---|---|
-| B-01 | `Projects` | *Anker* | |
-| B-02 | `Projects_Sections` | `Projects::__pkProjectID = Sections::_fkProjectID` | Erstellen ☑ Löschen ☑ · sortiert nach `Nr` aufsteigend |
-| B-03 | `Projects_Steps` | `Projects::__pkProjectID = Steps::_fkProjectID` | Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
-| B-04 | `Projects_ChecklistItems` | `Projects::__pkProjectID = ChecklistItems::_fkProjectID` | Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
-| B-05 | `Projects_Deliverables` | `Projects::__pkProjectID = Deliverables::_fkProjectID` | Erstellen ☑ Löschen ☑ |
-| B-06 | `Projects_Tasks` | `Projects::__pkProjectID = Tasks::_fkProjectID` | Erstellen ☑ Löschen ☑ · sortiert nach `Termin` |
-| B-07 | `Projects_Documents` | `Projects::__pkProjectID = Documents::_fkProjectID` | Erstellen ☑ Löschen ☑ |
-| B-08 | `Projects_Risks` | `Projects::__pkProjectID = Risks::_fkProjectID` | Erstellen ☑ Löschen ☑ |
-| B-09 | `Projects_Nudges` | `Projects::__pkProjectID = Nudges::_fkProjectID` | Erstellen ☑ Löschen ☐ · sortiert nach `Rang` |
-| B-10 | `Projects_ActivityLog` | `Projects::__pkProjectID = ActivityLog::_fkProjectID` | Erstellen ☑ Löschen ☐ · sortiert nach `Zeitstempel` **absteigend** |
-| B-11 | `Projects_Manuscripts` | `Projects::__pkProjectID = Manuscripts::_fkProjectID` | Erstellen ☑ Löschen ☑ |
-| B-12 | `Projects_ProjectPeople` | `Projects::__pkProjectID = ProjectPeople::_fkProjectID` | Erstellen ☑ Löschen ☑ |
-| B-13 | `Projects_ProjectPeople_People` | `ProjectPeople::_fkPersonID = People::__pkPersonID` | |
-| B-14 | `Projects_ProjectPeople_Roles` | `ProjectPeople::_fkRoleID = Roles::__pkRoleID` | |
-| B-15 | `Projects_zz_Utility` | `Projects × zz_Utility` — **Operator ×** (kartesisch) | liefert immer den einen Einstellungsdatensatz |
+| B-01 | `Projekte` | *Anker* | |
+| B-02 | `Projekte_Abschnitte` | `Projekte::__pkProjektID = Abschnitte::_fkProjektID` | Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
+| B-03 | `Projekte_Schritte` | `Projekte::__pkProjektID = Schritte::_fkProjektID` | Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
+| B-04 | `Projekte_Punkte` | `Projekte::__pkProjektID = Punkte::_fkProjektID` | Erstellen ☑ Löschen ☑ · sortiert nach `SchrittNr`, `Nr` |
+| B-05 | `Projekte_Ergebnisse` | `Projekte::__pkProjektID = Ergebnisse::_fkProjektID` | Erstellen ☑ Löschen ☑ |
+| B-06 | `Projekte_Aufgaben` | `Projekte::__pkProjektID = Aufgaben::_fkProjektID` | Erstellen ☑ Löschen ☑ · sortiert nach `Termin` |
+| B-07 | `Projekte_Dokumente` | `Projekte::__pkProjektID = Dokumente::_fkProjektID` | Erstellen ☑ Löschen ☑ |
+| B-08 | `Projekte_Risiken` | `Projekte::__pkProjektID = Risiken::_fkProjektID` | Erstellen ☑ Löschen ☑ |
+| B-09 | `Projekte_Hinweise` | `Projekte::__pkProjektID = Hinweise::_fkProjektID` | Erstellen ☑ Löschen ☐ · sortiert nach `Rang` |
+| B-10 | `Projekte_Verlauf` | `Projekte::__pkProjektID = Verlauf::_fkProjektID` | Erstellen ☑ Löschen ☐ · sortiert nach `Zeitstempel` **absteigend** |
+| B-11 | `Projekte_Manuskripte` | `Projekte::__pkProjektID = Manuskripte::_fkProjektID` | Erstellen ☑ Löschen ☑ |
+| B-12 | `Projekte_Beteiligte` | `Projekte::__pkProjektID = Projektbeteiligte::_fkProjektID` | Erstellen ☑ Löschen ☑ |
+| B-13 | `Projekte_Beteiligte_Personen` | `Projektbeteiligte::_fkPersonID = Personen::__pkPersonID` | |
+| B-14 | `Projekte_Beteiligte_Rollen` | `Projektbeteiligte::_fkRolleID = Rollen::__pkRolleID` | |
+| B-15 | `Projekte_Einstellungen` | `Projekte × zz_Einstellungen` — **Operator ×** (kartesisch) | liefert immer den einen Einstellungsdatensatz |
 
-> **B-03 und B-04 sind der Grund für die redundanten Fremdschlüssel** in `Steps`
-> und `ChecklistItems`. Ohne sie bräuchte Bildschirm 01 eine dreistufige
-> Bezugskette, und der Portalfilter würde unübersichtlich. Der Preis: Skript S-03
-> muss `_fkProjectID` beim Anlegen mitschreiben — drei zusätzliche Zeilen.
+> **B-03 und B-04 sind der Grund für die redundanten Fremdschlüssel** in
+> `Schritte` und `Punkte`. Ohne sie bräuchte Bildschirm 01 eine dreistufige
+> Bezugskette. Dieselben Felder tragen zugleich die Zugriffstrennung — ein Feld,
+> zwei Zwecke.
 
 > **Zu B-15:** Der Operator `×` verbindet jeden Datensatz mit jedem. Da
-> `zz_Utility` genau einen Datensatz hat, ist das der einfachste Weg an die
+> `zz_Einstellungen` genau einen Datensatz hat, ist das der einfachste Weg an die
 > Einstellungen. Im Beziehungsdiagramm den Operator im Aufklappmenü zwischen den
 > beiden Feldern auf `×` stellen.
 
@@ -87,13 +84,13 @@ Kontext von Layout `04 Abschnitt`.
 
 | Nr | Auftreten | Bezugsformel | Optionen |
 |---|---|---|---|
-| B-16 | `Sections` | *Anker* | |
-| B-17 | `Sections_Steps` | `Sections::__pkSectionID = Steps::_fkSectionID` | Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
-| B-18 | `Sections_ChecklistItems` | `Sections::__pkSectionID = ChecklistItems::_fkSectionID` | Erstellen ☑ Löschen ☑ |
-| B-19 | `Sections_Deliverables` | `Sections::__pkSectionID = Deliverables::_fkSectionID` | Erstellen ☑ Löschen ☑ |
-| B-20 | `Sections_Tasks` | `Sections::__pkSectionID = Tasks::_fkSectionID` | Erstellen ☑ Löschen ☑ |
-| B-21 | `Sections_Projects` | `Sections::_fkProjectID = Projects::__pkProjectID` | Rückweg zum Projekt |
-| B-22 | `Sections_zz_Utility` | `Sections × zz_Utility` — **Operator ×** | für die Zeitachsen-Formeln |
+| B-16 | `Abschnitte` | *Anker* | |
+| B-17 | `Abschnitte_Schritte` | `Abschnitte::__pkAbschnittID = Schritte::_fkAbschnittID` | Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
+| B-18 | `Abschnitte_Punkte` | `Abschnitte::__pkAbschnittID = Punkte::_fkAbschnittID` | Erstellen ☑ Löschen ☑ · sortiert nach `SchrittNr`, `Nr` |
+| B-19 | `Abschnitte_Ergebnisse` | `Abschnitte::__pkAbschnittID = Ergebnisse::_fkAbschnittID` | Erstellen ☑ Löschen ☑ |
+| B-20 | `Abschnitte_Aufgaben` | `Abschnitte::__pkAbschnittID = Aufgaben::_fkAbschnittID` | Erstellen ☑ Löschen ☑ |
+| B-21 | `Abschnitte_Projekte` | `Abschnitte::_fkProjektID = Projekte::__pkProjektID` | Rückweg zum Projekt |
+| B-22 | `Abschnitte_Einstellungen` | `Abschnitte × zz_Einstellungen` — **Operator ×** | nur für die grafische Zeitachse (F-14/F-15) |
 
 ---
 
@@ -103,24 +100,22 @@ Nur für die Summenberechnungen F-12 und F-13.
 
 | Nr | Auftreten | Bezugsformel |
 |---|---|---|
-| B-23 | `Steps` | *Anker* |
-| B-24 | `Steps_ChecklistItems` | `Steps::__pkStepID = ChecklistItems::_fkStepID` · Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
-
----
+| B-23 | `Schritte` | *Anker* |
+| B-24 | `Schritte_Punkte` | `Schritte::__pkSchrittID = Punkte::_fkSchrittID` · Erstellen ☑ Löschen ☑ · sortiert nach `Nr` |
 
 ## Anker 4 — DOKUMENT
 
 | Nr | Auftreten | Bezugsformel |
 |---|---|---|
-| B-25 | `Documents` | *Anker* |
-| B-26 | `Documents_DocumentVersions` | `Documents::__pkDocumentID = DocumentVersions::_fkDocumentID` · Erstellen ☑ · sortiert nach `Version` absteigend |
+| B-25 | `Dokumente` | *Anker* |
+| B-26 | `Dokumente_Versionen` | `Dokumente::__pkDokumentID = Dokumentversionen::_fkDokumentID` · Erstellen ☑ · sortiert nach `Version` absteigend |
 
 ## Anker 5 — MANUSKRIPT
 
 | Nr | Auftreten | Bezugsformel |
 |---|---|---|
-| B-27 | `Manuscripts` | *Anker* |
-| B-28 | `Manuscripts_Submissions` | `Manuscripts::__pkManuscriptID = Submissions::_fkManuscriptID` · Erstellen ☑ · sortiert nach `Runde` |
+| B-27 | `Manuskripte` | *Anker* |
+| B-28 | `Manuskripte_Einreichungen` | `Manuskripte::__pkManuskriptID = Einreichungen::_fkManuskriptID` · Erstellen ☑ · sortiert nach `Runde` |
 
 ---
 
@@ -132,22 +127,20 @@ mehreren Suchläufen.
 
 | Nr | Auftreten | Bezugsformel |
 |---|---|---|
-| B-29 | `SectionTemplates` | *Anker*, sortiert nach `Nr` |
-| B-30 | `SectionTemplates_StepTemplates` | `SectionTemplates::Nr = StepTemplates::SectionNr` · sortiert nach `Nr` |
-| B-31 | `SectionTemplates_StepTemplates_ChecklistTemplates` | **zwei Bedingungen:**<br>`StepTemplates::SectionNr = ChecklistTemplates::SectionNr`<br>`StepTemplates::Nr = ChecklistTemplates::StepNr`<br>sortiert nach `Nr` |
+| B-29 | `VorlageAbschnitte` | *Anker*, sortiert nach `Nr` |
+| B-30 | `VorlageAbschnitte_Schritte` | `VorlageAbschnitte::Nr = VorlageSchritte::AbschnittNr` · sortiert nach `Nr` |
+| B-31 | `VorlageAbschnitte_Schritte_Punkte` | **zwei Bedingungen:**<br>`VorlageSchritte::AbschnittNr = VorlagePunkte::AbschnittNr`<br>`VorlageSchritte::Nr = VorlagePunkte::SchrittNr`<br>sortiert nach `Nr` |
 
 > B-31 ist die einzige Beziehung mit zwei Bedingungen. Im Dialog auf *Hinzufügen*
 > klicken, um das zweite Feldpaar zu ergänzen. Ohne die zweite Bedingung würden
-> alle Checklistenpunkte aller Schritte einer Abschnittsnummer erscheinen.
-
----
+> alle Punkte aller Schritte einer Abschnittsnummer erscheinen.
 
 ## Anker 7 — PERSON
 
 | Nr | Auftreten | Bezugsformel |
 |---|---|---|
-| B-32 | `People` | *Anker* |
-| B-33 | `People_Tasks` | `People::__pkPersonID = Tasks::_fkPersonID` · sortiert nach `Termin` |
+| B-32 | `Personen` | *Anker* |
+| B-33 | `Personen_Aufgaben` | `Personen::__pkPersonID = Aufgaben::_fkPersonID` · sortiert nach `Termin` |
 
 ---
 
@@ -158,22 +151,24 @@ mehreren Suchläufen.
 | „Nur Hinweise meiner Stufe" | Portalfilter F-20.1 |
 | „Nur offene Hinweise" | Portalfilter F-20.1 |
 | „Nur meine Aufgaben" | Portalfilter F-20.2 über `g_MeinePersonID` |
-| „Nur der aktuell laufende Abschnitt" | Portalfilter F-20.3 über `Status = "läuft"` |
-| „Nur Schritte, die zutreffen" | Portalfilter F-20.4 über `TrifftNichtZu = 0` |
-| „Nur überfällige Aufgaben" | Portalfilter F-20.5 |
-| „Meine Projekte" (Leitungsliste) | Suchlauf in Skript S-02, kein Bezug |
+| „Nur der aktuell laufende Abschnitt" | Portalfilter F-20.3 |
+| „Nur Schritte, die zutreffen" | Portalfilter F-20.4 |
+| „Nur überfällige Aufgaben" | Portalfilter F-20.6 |
+| „Meine Projekte" (Projektliste) | Suchlauf in Skript S-02 |
+| **„Nur Projekte, die ich sehen darf"** | **Zugriffsrechte im Rechteset, nicht im Diagramm** — Doc 07 |
 
-Sieben gefilterte Ansichten, null zusätzliche Tabellenauftreten. Das ist der
-größte Einzelposten an gesparter Klickarbeit im ganzen Aufbau.
+Der letzte Punkt ist der wichtigste. Sichttrennung über Beziehungen oder Filter
+wäre Kosmetik; sie gehört ins Rechtesystem, wo sie auch dann greift, wenn jemand
+ein eigenes Layout baut oder exportiert.
 
 ---
 
 ## Reihenfolge beim Bauen
 
-1. Alle 20 Tabellen importieren (Doc 07) — FileMaker legt dabei je ein
+1. Alle 20 Tabellen importieren (Doc 08) — FileMaker legt dabei je ein
    Tabellenauftreten mit dem Tabellennamen an
 2. Die sieben Anker aus diesen Auftreten heraussuchen und nebeneinander legen
 3. Weitere Auftreten über *Duplizieren* erzeugen und nach obiger Liste umbenennen
-4. Beziehungen ziehen, Formeln und Optionen nach Tabelle setzen
+4. Beziehungen ziehen, Formeln und Optionen setzen
 5. Erst danach die Berechnungsfelder aus Doc 04 anlegen — sie greifen teils auf
    Bezüge zu und lassen sich vorher nicht speichern

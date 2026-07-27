@@ -25,12 +25,16 @@ nicht als Schranke.
 
 ## Zwei Stufen
 
-| Stufe | Leitfrage |
-|---|---|
-| **Forschende** | Wo stehe ich, und was mache ich als Nächstes? |
-| **Forschungsleitung** | Wie stehen meine Projekte, und wo sollte ich mich einmischen? |
+| Stufe | Anzahl | Leitfrage | Sieht |
+|---|---|---|---|
+| **Forschende** | 6–9 | Wo stehe ich, und was mache ich als Nächstes? | nur eigene Projekte |
+| **Forschungsleitung** | 2–3 | Wie stehen meine Projekte, und wo sollte ich mich einmischen? | alle Projekte |
 
-Dieselben Daten, zwei Aufbereitungen — bis hinein in die hinterlegten Erklärtexte.
+Zwei Aufbereitungen derselben Daten — bis hinein in die hinterlegten Erklärtexte,
+die für jede Stufe eigens formuliert sind.
+
+Die Sichttrennung liegt im **Rechtesystem** der Datenbank, nicht in der
+Oberfläche: Sie greift auch beim Export und in selbstgebauten Ansichten.
 
 ## Der Bogen über 24 Monate
 
@@ -49,7 +53,8 @@ markieren — so passt ein Modell auf jedes Vorhaben.
 
 ## Rahmen
 
-- **Plattform:** FileMaker Pro + FileMaker Server, Mehrbenutzerbetrieb
+- **Plattform:** FileMaker Pro + FileMaker Server, 8–12 gleichzeitige Anwender
+- **Sprache:** alle Bezeichner, Formeln und Oberflächen deutsch
 - **Datenumfang:** ausschließlich Steuerungs- und Metadaten, keine personenbezogenen Studiendaten
 - **Erste Ausbaustufe:** MVP nach Kompendium Kapitel 14.1, ergänzt um Zeitachse und Orientierungsschicht
 
@@ -59,8 +64,8 @@ Planung und Bauunterlagen abgeschlossen, Nachbau in FileMaker noch nicht begonne
 
 `.fmp12`-Dateien lassen sich nur in FileMaker Pro selbst erzeugen. Deshalb liegt
 hier alles, was sich vorbereiten lässt: 20 Tabellen als import-fertige Dateien,
-26 Beziehungen mit Formeln, 23 Berechnungen zum Einfügen, 9 Skripte Schritt für
-Schritt, 15 Layouts mit Koordinaten — und die komplette Wissensschicht mit 84
-redaktionellen Einträgen.
+26 Beziehungen mit Formeln, 23 Berechnungen zum Einfügen, 11 Skripte Schritt für
+Schritt, 16 Layouts mit Koordinaten, drei Rechtesets samt Zugriffstrennung — und
+die komplette Wissensschicht mit 84 redaktionellen Einträgen.
 
 In FileMaker bleibt der Nachbau anhand dieser Unterlagen.

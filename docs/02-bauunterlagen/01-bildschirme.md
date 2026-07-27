@@ -45,19 +45,19 @@ Einstiegsseite nach der Anmeldung für Forschende. Ein Projekt, nah dran.
 
 | Element | ⇒ Herleitung |
 |---|---|
-| Projekttitel | `Projects::Titel` |
-| Projektcode rechts | `Projects::c_Projektcode` (Formel F-01) |
-| **Standortsatz** | `Projects::c_Standortsatz` (Formel F-05) — der wichtigste Wert im System |
-| Fortschrittsbalken | `Projects::c_ZeitfortschrittProzent` (F-06), als Balkendiagramm-Objekt |
-| „Einreichung voraussichtlich" | `Projects::c_EinreichungVoraussichtlich` (F-08) |
-| Abschnittsnummer und -name | Portal auf `Projects_Sections` (B-02), Filter F-20.3 `Status = "läuft"` |
-| Leitfrage | `Sections::Leitfrage` |
-| Schrittliste | Portal auf `Projects_Steps` (B-03), Filter F-20.4 |
-| Checklistenpunkte | Portal auf `Projects_ChecklistItems` (B-04), Filter F-20.5, sortiert nach `StepNr, Nr` |
-| Erklärtext unter dem Punkt | `ChecklistItems::Erklaerung`, sichtbar bei aktivem Datensatz (F-21) |
-| Hinweisspalte | Portal auf `Projects_Nudges` (B-09), Filter F-20.1 |
+| Projekttitel | `Projekte::Titel` |
+| Projektcode rechts | `Projekte::c_Projektcode` (Formel F-01) |
+| **Standortsatz** | `Projekte::c_Standortsatz` (Formel F-05) — der wichtigste Wert im System |
+| Fortschrittsbalken | `Projekte::c_ZeitfortschrittProzent` (F-06), als Balkendiagramm-Objekt |
+| „Einreichung voraussichtlich" | `Projekte::c_EinreichungVoraussichtlich` (F-08) |
+| Abschnittsnummer und -name | Portal auf `Projekte_Abschnitte` (B-02), Filter F-20.3 `Status = "läuft"` |
+| Leitfrage | `Abschnitte::Leitfrage` |
+| Schrittliste | Portal auf `Projekte_Schritte` (B-03), Filter F-20.4 |
+| Checklistenpunkte | Portal auf `Projekte_Punkte` (B-04), Filter F-20.5, sortiert nach `SchrittNr, Nr` |
+| Erklärtext unter dem Punkt | `Punkte::Erklaerung`, sichtbar bei aktivem Datensatz (F-21) |
+| Hinweisspalte | Portal auf `Projekte_Hinweise` (B-09), Filter F-20.1 |
 | Knopf „passt" | Skript S-06 *Hinweis wegklicken* |
-| Meine Aufgaben | Portal auf `Projects_Tasks` (B-06), Filter F-20.2 |
+| Meine Aufgaben | Portal auf `Projekte_Aufgaben` (B-06), Filter F-20.2 |
 
 **Bei mehreren eigenen Projekten** erscheint davor eine schlichte Auswahlliste
 (Layout `06 Projektauswahl`).
@@ -67,6 +67,10 @@ Einstiegsseite nach der Anmeldung für Forschende. Ein Projekt, nah dran.
 ## Bildschirm 02 — „Meine Projekte" (Stufe Forschungsleitung)
 
 Einstiegsseite nach der Anmeldung für die Forschungsleitung.
+
+**Für Forschende gibt es diesen Bildschirm nicht** — weder im Layoutmenü noch
+über die Rechte. Die Gesamtübersicht ist genau der Unterschied zwischen den
+beiden Stufen.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -96,22 +100,28 @@ Einstiegsseite nach der Anmeldung für die Forschungsleitung.
 
 | Element | ⇒ Herleitung |
 |---|---|
-| Projektliste | Listenlayout auf `Projects`, Suchlauf über `ProjectPeople` (Skript S-02) |
-| „M 9/24" | `Projects::s_MonatImProjekt` und `Projects::BogenLaengeMonate` — **`s_`, nicht `c_`**, sonst ist die Liste langsam und nicht sortierbar |
-| Zustand | `Projects::s_Zustand` (Formel F-10, nachts geschrieben) |
-| Einreichung | `Projects::s_EinreichungVoraussichtlich` |
-| **„Was sich zu besprechen lohnt"** | Portal auf `Projects_Nudges` (B-09), Filter F-20.1, sortiert nach `Rang` |
-| Text des Vorschlags | `Nudges::Text`, erzeugt von Skript S-05 aus der Wissensschicht |
+| Projektliste | Listenlayout auf `Projekte`, Suchlauf über `Projektbeteiligte` (Skript S-02) |
+| „M 9/24" | `Projekte::s_MonatImProjekt` und `Projekte::BogenLaengeMonate` — **`s_`, nicht `c_`**, sonst ist die Liste langsam und nicht sortierbar |
+| Zustand | `Projekte::s_Zustand` (F-10, nachts geschrieben) |
+| Einreichung | `Projekte::s_EinreichungVoraussichtlich` |
+| **„Was sich zu besprechen lohnt"** | Portal auf `Projekte_Hinweise` (B-09), Filter F-20.1, sortiert nach `Rang` |
+| Text des Vorschlags | `Hinweise::Text`, erzeugt von Skript S-05 aus der Wissensschicht |
 
 Dieser untere Bereich ist der eigentliche Grund für die zweite Stufe. Er beantwortet
 die Frage, die eine unerfahrene Betreuung nicht stellen kann: *Worauf schaue ich
 bei einem Projekt in Monat 9 überhaupt?*
 
+Die Liste zeigt alle Projekte, weil das Rechteset `Forschungsleitung` alle sieht.
+Für Forschende liefert dieselbe Abfrage nur die eigenen — die Trennung steckt
+nicht in diesem Layout, sondern im Rechtesystem
+([Doc 07](07-rechte-und-mehrbenutzer.md)).
+
 ---
 
 ## Bildschirm 03 — Projektakte
 
-Gemeinsam für beide Stufen. Kopfbereich plus Registerkarten.
+Gemeinsam für beide Stufen — aber nur für Projekte, die man sehen darf.
+Kopfbereich plus Registerkarten.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
@@ -134,15 +144,15 @@ Gemeinsam für beide Stufen. Kopfbereich plus Registerkarten.
 |---|---|
 | Kopfzeile | wie Bildschirm 01, kompakter |
 | Registerkarten | Registerkartenobjekt, je Reiter ein Portal |
-| Abschnittsliste | Portal auf `Projects_Sections` (B-02), sortiert nach `Nr` |
-| „M 1–4" | `Sections::Band_Von_Monat` & `Sections::Band_Bis_Monat` |
-| „12/12" | `Sections::c_PunkteErledigt` / `c_PunkteGesamt` (F-12, F-13) |
-| Reiter Ergebnisse | Portal `Projects_Deliverables` (B-05) |
-| Reiter Aufgaben | Portal `Projects_Tasks` (B-06) |
-| Reiter Dokumente | Portal `Projects_Documents` (B-07) |
-| Reiter Risiken | Portal `Projects_Risks` (B-08) |
-| Reiter Publikation | Portal `Projects_Manuscripts` (B-11) |
-| Reiter Verlauf | Portal `Projects_ActivityLog` (B-10), absteigend nach Zeitstempel |
+| Abschnittsliste | Portal auf `Projekte_Abschnitte` (B-02), sortiert nach `Nr` |
+| „M 1–4" | `Abschnitte::Band_Von_Monat` & `Abschnitte::Band_Bis_Monat` |
+| „12/12" | `Abschnitte::c_PunkteErledigt` / `c_PunkteGesamt` (F-12, F-13) |
+| Reiter Ergebnisse | Portal `Projekte_Ergebnisse` (B-05) |
+| Reiter Aufgaben | Portal `Projekte_Aufgaben` (B-06) |
+| Reiter Dokumente | Portal `Projekte_Dokumente` (B-07) |
+| Reiter Risiken | Portal `Projekte_Risiken` (B-08) |
+| Reiter Publikation | Portal `Projekte_Manuskripte` (B-11) |
+| Reiter Verlauf | Portal `Projekte_Verlauf` (B-10), absteigend nach Zeitstempel |
 
 ---
 
@@ -183,15 +193,15 @@ Aus der Projektakte durch Klick auf einen Abschnitt.
 
 | Element | ⇒ Herleitung |
 |---|---|
-| „Wozu dieser Abschnitt da ist" | `Sections::Zweck` — beim Anlegen aus `SectionTemplates` kopiert |
-| „Was schiefgeht" | `Sections::Stolpersteine` |
-| Checkliste | **ein** Portal auf `Sections_ChecklistItems` (B-18), sortiert nach `StepNr, Nr` — Gliederung über Überschriftszeilen, siehe F-11 |
-| Häkchen | `ChecklistItems::Erledigt`, Klick löst Skript S-04 aus |
-| Notizknopf | `ChecklistItems::Notiz` in einem Karten-Fenster |
-| Ergebnisse | Portal `Sections_Deliverables` (B-19) |
+| „Wozu dieser Abschnitt da ist" | `Abschnitte::Zweck` — beim Anlegen aus `VorlageAbschnitte` kopiert |
+| „Was schiefgeht" | `Abschnitte::Stolpersteine` |
+| Checkliste | **ein** Portal auf `Abschnitte_Punkte` (B-18), sortiert nach `SchrittNr, Nr` — Gliederung über Überschriftszeilen, siehe F-11 |
+| Häkchen | `Punkte::Erledigt`, Klick löst Skript S-04 aus |
+| Notizknopf | `Punkte::Notiz` in einem Karten-Fenster |
+| Ergebnisse | Portal `Abschnitte_Ergebnisse` (B-19) |
 
 **Für die Stufe Leitung** erscheint hier zusätzlich ein Kasten *Worauf zu schauen
-ist* mit `Sections::Hinweis_Leitung`. Für Forschende bleibt er ausgeblendet
+ist* mit `Abschnitte::Hinweis_Leitung`. Für Forschende bleibt er ausgeblendet
 (bedingte Formatierung über `g_MeineStufe`).
 
 ---
@@ -217,11 +227,11 @@ ist* mit `Sections::Hinweis_Leitung`. Für Forschende bleibt er ausgeblendet
 
 | Element | ⇒ Herleitung |
 |---|---|
-| Soll-Balken | Rechteck, Breite aus `Sections::c_BandBreitePx` (F-14), Position aus `c_BandStartPx` |
+| Soll-Balken | Rechteck, Breite aus `Abschnitte::c_BandBreitePx` (F-14), Position aus `c_BandStartPx` |
 | Ist-Balken | aus `Ist_Start` und `Ist_Ende` bzw. heute, Formel F-15 |
-| Heute-Marke | senkrechte Linie, Position aus `Projects::c_HeutePx` (F-16) |
+| Heute-Marke | senkrechte Linie, Position aus `Projekte::c_HeutePx` (F-16) |
 
-Umsetzung als Portal auf `Projects_Sections` mit einem Rechteck-Objekt je Zeile,
+Umsetzung als Portal auf `Projekte_Abschnitte` mit einem Rechteck-Objekt je Zeile,
 dessen linker Rand und Breite über *Objekt ▸ Ausblenden wenn* und die
 Balkendiagramm-Darstellung gesteuert werden. Details Doc 06 §6.
 
@@ -247,4 +257,5 @@ Aus diesen Bildschirmen ergeben sich:
 - **23 Formeln** und eine Custom Function, davon sechs tragende: Standortsatz,
   Verzug, voraussichtliche Einreichung, Zustand, Fortschritt, Zeitachse — Doc 04
 - **9 Skripte** — Doc 05
-- **6 Arbeitslayouts, 9 Hilfslayouts** — Doc 06
+- **6 Arbeitslayouts, 10 Hilfslayouts** — Doc 06
+- **3 Rechtesets** mit zwei Zugriffsformeln, die die Sichttrennung tragen — Doc 07

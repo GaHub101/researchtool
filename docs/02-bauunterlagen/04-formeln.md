@@ -4,50 +4,54 @@ Alle Berechnungen zum Einfügen. **Kontext** ist das Tabellenauftreten, das im
 Formeleditor oben links eingestellt sein muss — bei falschem Kontext findet
 FileMaker die Bezugsfelder nicht.
 
-## Vorbemerkung: Funktionsnamen und Sprache
+## Vorbemerkung: Funktionsnamen
 
-Die Formeln stehen mit **englischen Funktionsnamen**. FileMaker zeigt
-Funktionsnamen in der Sprache der Programmoberfläche an; in einer deutschen
-Installation lassen sich englische Namen nicht einfach einfügen.
+Die Formeln stehen mit **deutschen Funktionsnamen**, passend zu einer deutschen
+FileMaker-Oberfläche. Sicherheitshalber die Entsprechungen, falls Ihre
+Installation englisch läuft:
 
-Zwei Wege:
+| Deutsch | Englisch | Deutsch | Englisch |
+|---|---|---|---|
+| `Setze` | Let | `Hole` | Get |
+| `Fallunterscheidung` | Case | `Wenn` | If |
+| `IstLeer` | IsEmpty | `Runden` | Round |
+| `Jahr` `Monat` `Tag` | Year Month Day | `Datum` | Date |
+| `Summe` | Sum | `Max` `Min` | Max Min |
+| `HoleAlsZahl` | GetAsNumber | `HoleAlsDatum` | GetAsDate |
+| `Rechts` `Links` | Right Left | `Monatsname` | MonthName |
+| `Austauschen` | Substitute | `AuswerteSQL` | ExecuteSQL |
+| `FilterWerte` | FilterValues | `HoleWert` | GetValue |
 
-- **Empfohlen:** FileMaker Pro auf Englisch stellen. Der Aufbau der Formeln
-  bleibt identisch, nur die Namen sind vertraut aus jeder Dokumentation.
-- Andernfalls: die Struktur übernehmen und jede Funktion über die Funktionsliste
-  rechts im Formeleditor einsetzen — dort erscheinen die deutschen Namen. Die
-  Operatoren (`&`, `=`, `≤`, `;`) sind in beiden Sprachen gleich.
-
-Benutzte Funktionen: `Let` `Case` `If` `IsEmpty` `Get` `Year` `Month` `Day`
-`Date` `Max` `Min` `Round` `Sum` `GetAsNumber` `GetAsDate` `Right` `Left`
-`MonthName` `ExecuteSQL`.
+Die Struktur der Formeln ist in beiden Sprachen identisch; nur die Namen wechseln.
+Im Zweifel die Funktion aus der Liste rechts im Formeleditor doppelklicken — dann
+wird immer der richtige Name eingesetzt.
 
 ---
 
-## F-01 · `Projects::c_Projektcode` — Text, **nicht** gespeichert
+## F-01 · `Projekte::c_Projektcode` — Text, nicht gespeichert
 
 ```
-Year ( GetAsDate ( Projects::ErstelltAm ) ) & "-" & Right ( "000" & Projects::LfdNr ; 3 )
+Jahr ( HoleAlsDatum ( Projekte::ErstelltAm ) ) & "-" & Rechts ( "000" & Projekte::LfdNr ; 3 )
 ```
 
 Ergibt `2026-014`.
 
 ---
 
-## F-02 · `Projects::c_MonatImProjekt` — Zahl, nicht gespeichert
+## F-02 · `Projekte::c_MonatImProjekt` — Zahl, nicht gespeichert
 
 Der Grundwert des ganzen Systems. Monat 1 ist der Startmonat.
 
 ```
-Let ( [
-    s = Projects::Startdatum ;
-    h = Get ( CurrentDate )
+Setze ( [
+    s = Projekte::Startdatum ;
+    h = Hole ( AktuellesDatum )
   ] ;
-    Case (
-      IsEmpty ( s ) ; "" ;
-      ( Year ( h ) - Year ( s ) ) * 12
-      + ( Month ( h ) - Month ( s ) )
-      + If ( Day ( h ) ≥ Day ( s ) ; 1 ; 0 )
+    Fallunterscheidung (
+      IstLeer ( s ) ; "" ;
+      ( Jahr ( h ) - Jahr ( s ) ) * 12
+      + ( Monat ( h ) - Monat ( s ) )
+      + Wenn ( Tag ( h ) ≥ Tag ( s ) ; 1 ; 0 )
     )
 )
 ```
@@ -57,72 +61,72 @@ Heute 15.02. → Monat 2.
 
 ---
 
-## F-03 · `Projects::c_SollAbschnittNr` — Zahl, nicht gespeichert
+## F-03 · `Projekte::c_SollAbschnittNr` — Zahl, nicht gespeichert
 
 In welchem Abschnitt man planmäßig sein *sollte*. Nutzt die überschneidungsfreien
 `Schwerpunkt`-Bereiche — mit den überlappenden `Band`-Bereichen wäre die Antwort
 mehrdeutig.
 
 ```
-Let ( [
-    m = Projects::c_MonatImProjekt ;
-    r = ExecuteSQL (
-          "SELECT \"Nr\" FROM \"Sections\"
-             WHERE \"_fkProjectID\" = ?
+Setze ( [
+    m = Projekte::c_MonatImProjekt ;
+    r = AuswerteSQL (
+          "SELECT \"Nr\" FROM \"Abschnitte\"
+             WHERE \"_fkProjektID\" = ?
                AND \"Schwerpunkt_Von_Monat\" <= ?
                AND \"Schwerpunkt_Bis_Monat\" >= ?" ;
           "" ; "" ;
-          Projects::__pkProjectID ; m ; m )
+          Projekte::__pkProjektID ; m ; m )
   ] ;
-    Case ( IsEmpty ( r ) ; "" ; GetAsNumber ( r ) )
+    Fallunterscheidung ( IstLeer ( r ) ; "" ; HoleAlsZahl ( r ) )
 )
 ```
 
-> `ExecuteSQL` erspart hier ein gefiltertes Tabellenauftreten. Es ist nicht
+> `AuswerteSQL` erspart hier ein gefiltertes Tabellenauftreten. Es ist nicht
 > gespeichert und in Listen zu langsam — deshalb schreibt Skript S-08 den Wert
 > nachts nach `s_AktuellerAbschnittNr`, und Listen lesen nur dort.
 
-## F-04 · `Projects::c_SollAbschnittName` — Text, nicht gespeichert
+## F-04 · `Projekte::c_SollAbschnittName` — Text, nicht gespeichert
 
 ```
-Let ( [
-    m = Projects::c_MonatImProjekt ;
-    r = ExecuteSQL (
-          "SELECT \"Name\" FROM \"Sections\"
-             WHERE \"_fkProjectID\" = ?
+Setze ( [
+    m = Projekte::c_MonatImProjekt ;
+    r = AuswerteSQL (
+          "SELECT \"Name\" FROM \"Abschnitte\"
+             WHERE \"_fkProjektID\" = ?
                AND \"Schwerpunkt_Von_Monat\" <= ?
                AND \"Schwerpunkt_Bis_Monat\" >= ?" ;
           "" ; "" ;
-          Projects::__pkProjectID ; m ; m )
+          Projekte::__pkProjektID ; m ; m )
   ] ;
-    Substitute ( r ; ¶ ; "" )
+    Austauschen ( r ; ¶ ; "" )
 )
 ```
 
 ---
 
-## F-05 · `Projects::c_Standortsatz` — Text, nicht gespeichert
+## F-05 · `Projekte::c_Standortsatz` — Text, nicht gespeichert
 
 **Der wichtigste Einzelwert im System.** Steht ganz oben auf jeder Projektakte und
 beantwortet die Frage, die sich Unerfahrene nicht zu stellen trauen.
 
 ```
-Let ( [
-    m     = Projects::c_MonatImProjekt ;
-    n     = Projects::BogenLaengeMonate ;
-    istN  = Projects::s_AktuellerAbschnittNr ;
-    istT  = Projects::s_AktuellerAbschnittName ;
-    sollN = Projects::c_SollAbschnittNr ;
-    sollT = Projects::c_SollAbschnittName
+Setze ( [
+    m     = Projekte::c_MonatImProjekt ;
+    n     = Projekte::BogenLaengeMonate ;
+    istN  = Projekte::s_AktuellerAbschnittNr ;
+    istT  = Projekte::s_AktuellerAbschnittName ;
+    sollN = Projekte::c_SollAbschnittNr ;
+    sollT = Projekte::c_SollAbschnittName
   ] ;
-    Case (
-      IsEmpty ( Projects::Startdatum ) ;
+    Fallunterscheidung (
+      IstLeer ( Projekte::Startdatum ) ;
         "Kein Startdatum hinterlegt — ohne das kann das System nicht sagen, wo Sie stehen." ;
 
       m > n ;
         "Monat " & m & ". Der geplante Bogen von " & n & " Monaten ist abgelaufen. Das kommt häufig vor und ist kein Grund zur Sorge." ;
 
-      IsEmpty ( istN ) ;
+      IstLeer ( istN ) ;
         "Monat " & m & " von " & n & ". Noch kein Abschnitt begonnen — planmäßig wäre jetzt „" & sollT & "“." ;
 
       istN = sollN ;
@@ -141,16 +145,16 @@ Folge statt eines Vorwurfs.
 
 ---
 
-## F-06 · `Projects::c_ZeitfortschrittProzent` — Zahl, nicht gespeichert
+## F-06 · `Projekte::c_ZeitfortschrittProzent` — Zahl, nicht gespeichert
 
 ```
-Let ( [
-    m = Projects::c_MonatImProjekt ;
-    n = Projects::BogenLaengeMonate
+Setze ( [
+    m = Projekte::c_MonatImProjekt ;
+    n = Projekte::BogenLaengeMonate
   ] ;
-    Case (
-      IsEmpty ( m ) or n = 0 ; 0 ;
-      Min ( 100 ; Round ( m / n * 100 ; 0 ) )
+    Fallunterscheidung (
+      IstLeer ( m ) oder n = 0 ; 0 ;
+      Min ( 100 ; Runden ( m / n * 100 ; 0 ) )
     )
 )
 ```
@@ -160,47 +164,46 @@ Bereich 0 bis 100.
 
 ---
 
-## F-07 · `Projects::c_Verzug` — Zahl, nicht gespeichert
+## F-07 · `Projekte::c_Verzug` — Zahl, nicht gespeichert
 
 Wie viele Monate hinter dem Plan. Basis der Fortschreibung.
 
 ```
-Let ( [
-    m   = Projects::c_MonatImProjekt ;
-    bis = Projects::s_AktuellerAbschnittSchwerpunktBis
+Setze ( [
+    m   = Projekte::c_MonatImProjekt ;
+    bis = Projekte::s_AktuellerAbschnittSchwerpunktBis
   ] ;
-    Case (
-      IsEmpty ( bis ) ; 0 ;
+    Fallunterscheidung (
+      IstLeer ( bis ) ; 0 ;
       Max ( 0 ; m - bis )
     )
 )
 ```
 
-Nur nach oben — wer schneller ist, bekommt keinen negativen Verzug
-angerechnet. Die Einreichung rückt dadurch nie nach vorne, was der Erfahrung
-entspricht.
+Nur nach oben — wer schneller ist, bekommt keinen negativen Verzug angerechnet.
+Die Einreichung rückt dadurch nie nach vorne, was der Erfahrung entspricht.
 
-## F-08 · `Projects::c_EinreichungVoraussichtlich` — Datum, nicht gespeichert
+## F-08 · `Projekte::c_EinreichungVoraussichtlich` — Datum, nicht gespeichert
 
 ```
-Let ( [
-    s = Projects::Startdatum ;
-    z = Projects::ZielpunktEinreichungMonat ;
-    v = Projects::c_Verzug
+Setze ( [
+    s = Projekte::Startdatum ;
+    z = Projekte::ZielpunktEinreichungMonat ;
+    v = Projekte::c_Verzug
   ] ;
-    If ( IsEmpty ( s ) ; "" ;
-      Date ( Month ( s ) + z + v ; Day ( s ) ; Year ( s ) )
+    Wenn ( IstLeer ( s ) ; "" ;
+      Datum ( Monat ( s ) + z + v ; Tag ( s ) ; Jahr ( s ) )
     )
 )
 ```
 
-`Date()` rechnet Monatsüberläufe selbst um — Monat 27 wird zu März des Folgejahres.
+`Datum()` rechnet Monatsüberläufe selbst um — Monat 27 wird zu März des Folgejahres.
 
-## F-09 · `Projects::c_EinreichungText` — Text, nicht gespeichert
+## F-09 · `Projekte::c_EinreichungText` — Text, nicht gespeichert
 
 ```
-Let ( d = Projects::c_EinreichungVoraussichtlich ;
-    If ( IsEmpty ( d ) ; "—" ; MonthName ( d ) & " " & Year ( d ) )
+Setze ( d = Projekte::c_EinreichungVoraussichtlich ;
+    Wenn ( IstLeer ( d ) ; "—" ; Monatsname ( d ) & " " & Jahr ( d ) )
 )
 ```
 
@@ -209,21 +212,21 @@ wäre eine Genauigkeit, die es nicht gibt.
 
 ---
 
-## F-10 · `Projects::c_Zustand` — Text, nicht gespeichert
+## F-10 · `Projekte::c_Zustand` — Text, nicht gespeichert
 
 ```
-Let ( [
-    st     = Projects::Status ;
-    letzte = Projects::s_LetzteAktivitaet ;
-    tage   = Get ( CurrentDate ) - letzte ;
-    f1     = Projects_zz_Utility::StilleFristTage ;
-    f2     = Projects_zz_Utility::RuhtFristTage
+Setze ( [
+    st     = Projekte::Status ;
+    letzte = Projekte::s_LetzteAktivitaet ;
+    tage   = Hole ( AktuellesDatum ) - letzte ;
+    f1     = Projekte_Einstellungen::StilleFristTage ;
+    f2     = Projekte_Einstellungen::RuhtFristTage
   ] ;
-    Case (
+    Fallunterscheidung (
       st = "abgeschlossen" ; "abgeschlossen" ;
       st = "abgebrochen"   ; "abgebrochen" ;
       st = "ruht"          ; "ruht" ;
-      IsEmpty ( letzte )   ; "läuft" ;
+      IstLeer ( letzte )   ; "läuft" ;
       tage > f2            ; "ruht" ;
       tage > f1            ; "stockt" ;
                              "läuft"
@@ -233,91 +236,75 @@ Let ( [
 
 ---
 
-## F-11 · `ChecklistItems` — zwei gespeicherte Zahlenfelder
+## F-11 · `Punkte` — zwei gespeicherte Zahlenfelder
 
 **Wichtig: bei beiden den Haken bei *Ergebnis nicht speichern* entfernen.** Nur
 gespeicherte Felder lassen sich schnell summieren.
 
 `IstOffen`:
 ```
-If (
-  ChecklistItems::Erledigt = 1
-  or ChecklistItems::TrifftNichtZu = 1
-  or ChecklistItems::IstUeberschrift = 1
+Wenn (
+  Punkte::Erledigt = 1
+  oder Punkte::TrifftNichtZu = 1
+  oder Punkte::IstUeberschrift = 1
   ; 0 ; 1 )
 ```
 
 `IstGezaehlt`:
 ```
-If (
-  ChecklistItems::TrifftNichtZu = 1
-  or ChecklistItems::IstUeberschrift = 1
+Wenn (
+  Punkte::TrifftNichtZu = 1
+  oder Punkte::IstUeberschrift = 1
   ; 0 ; 1 )
 ```
-
-> **Was ist `IstUeberschrift`?** FileMaker kann keine Portale ineinander
-> verschachteln. Damit die Checkliste trotzdem nach Schritten gegliedert aussieht,
-> legt Skript S-03 je Schritt einen zusätzlichen Datensatz mit `Nr = 0`,
-> `IstUeberschrift = 1` und dem Schrittnamen in `Punkt` an. Sortiert nach
-> `StepNr, Nr` landet er automatisch als Überschrift über seiner Gruppe. Im Layout
-> wird bei diesen Zeilen das Kontrollkästchen ausgeblendet und der Text fett
-> gesetzt. Ein Feld und drei Skriptzeilen ersetzen so das fehlende
-> Verschachtelungs-Feature.
 
 ---
 
 ## F-12 · `c_PunkteGesamt` — Zahl, nicht gespeichert
 
-Kontext **Steps**:
-```
-Sum ( Steps_ChecklistItems::IstGezaehlt )
-```
+Kontext **Schritte**: `Summe ( Schritte_Punkte::IstGezaehlt )`
 
-Kontext **Sections**:
-```
-Sum ( Sections_ChecklistItems::IstGezaehlt )
-```
+Kontext **Abschnitte**: `Summe ( Abschnitte_Punkte::IstGezaehlt )`
 
 ## F-13 · `c_PunkteErledigt` — Zahl, nicht gespeichert
 
-Kontext **Steps**:
+Kontext **Schritte**:
 ```
-Sum ( Steps_ChecklistItems::IstGezaehlt ) - Sum ( Steps_ChecklistItems::IstOffen )
-```
-
-Kontext **Sections**:
-```
-Sum ( Sections_ChecklistItems::IstGezaehlt ) - Sum ( Sections_ChecklistItems::IstOffen )
+Summe ( Schritte_Punkte::IstGezaehlt ) - Summe ( Schritte_Punkte::IstOffen )
 ```
 
-Anzeige „3/9" im Layout als Zusammenfassungstext:
-`c_PunkteErledigt & "/" & c_PunkteGesamt`
+Kontext **Abschnitte**:
+```
+Summe ( Abschnitte_Punkte::IstGezaehlt ) - Summe ( Abschnitte_Punkte::IstOffen )
+```
+
+Anzeige „3/9" im Layout: `c_PunkteErledigt & "/" & c_PunkteGesamt`
 
 ---
 
-## CF-01 · Custom Function `Wiederhole ( text ; anzahl )`
+## CF-01 · Benutzerdefinierte Funktion `Wiederhole ( text ; anzahl )`
 
 *Datei ▸ Verwalten ▸ Benutzerdefinierte Funktionen ▸ Neu*
 
 ```
-Case ( anzahl < 1 ; "" ; text & Wiederhole ( text ; anzahl - 1 ) )
+Fallunterscheidung ( anzahl < 1 ; "" ; text & Wiederhole ( text ; anzahl - 1 ) )
 ```
 
 Rekursiv, für die Zeitachse. FileMaker hat keine eingebaute Wiederholfunktion;
-diese vier Wörter ersparen jede Bastelei mit `Substitute ( 10^n - 1 ; … )`.
+diese Zeile erspart jede Bastelei.
 
-## F-22 · `Sections::c_BandGrafik` — Text, nicht gespeichert
+## F-22 · `Abschnitte::c_BandGrafik` — Text, nicht gespeichert
 
-Der **geplante** Balken der Zeitachse als Zeichenkette. Zwei Zeichen je Monat.
-Im Layout in einer nichtproportionalen Schrift darstellen (Doc 06 §5).
+Der **geplante** Balken der Zeitachse als Zeichenkette, zwei Zeichen je Monat. Im
+Layout in einer nichtproportionalen Schrift darstellen (Doc 06 §5).
 
 ```
-Let ( [
-    n  = Sections_Projects::BogenLaengeMonate ;
-    bv = Sections::Band_Von_Monat ;
-    bb = Sections::Band_Bis_Monat
+Setze ( [
+    n  = Abschnitte_Projekte::BogenLaengeMonate ;
+    bv = Abschnitte::Band_Von_Monat ;
+    bb = Abschnitte::Band_Bis_Monat
   ] ;
-    Case ( n = 0 ; "" ;
+    Fallunterscheidung ( n = 0 ; "" ;
       Wiederhole ( "·" ; ( bv - 1 ) * 2 )
     & Wiederhole ( "▓" ; ( bb - bv + 1 ) * 2 )
     & Wiederhole ( "·" ; ( n - bb ) * 2 )
@@ -325,21 +312,21 @@ Let ( [
 )
 ```
 
-## F-23 · `Sections::c_IstGrafik` — Text, nicht gespeichert
+## F-23 · `Abschnitte::c_IstGrafik` — Text, nicht gespeichert
 
 Der **tatsächliche** Balken. Läuft der Abschnitt noch, endet er bei heute.
 
 ```
-Let ( [
-    s  = Sections_Projects::Startdatum ;
-    a  = Sections::Ist_Start ;
-    e  = If ( IsEmpty ( Sections::Ist_Ende ) ; Get ( CurrentDate ) ; Sections::Ist_Ende ) ;
-    n  = Sections_Projects::BogenLaengeMonate ;
-    ma = ( Year ( a ) - Year ( s ) ) * 12 + ( Month ( a ) - Month ( s ) ) ;
-    md = ( Year ( e ) - Year ( a ) ) * 12 + ( Month ( e ) - Month ( a ) ) + 1
+Setze ( [
+    s  = Abschnitte_Projekte::Startdatum ;
+    a  = Abschnitte::Ist_Start ;
+    e  = Wenn ( IstLeer ( Abschnitte::Ist_Ende ) ; Hole ( AktuellesDatum ) ; Abschnitte::Ist_Ende ) ;
+    n  = Abschnitte_Projekte::BogenLaengeMonate ;
+    ma = ( Jahr ( a ) - Jahr ( s ) ) * 12 + ( Monat ( a ) - Monat ( s ) ) ;
+    md = ( Jahr ( e ) - Jahr ( a ) ) * 12 + ( Monat ( e ) - Monat ( a ) ) + 1
   ] ;
-    Case (
-      IsEmpty ( a ) or IsEmpty ( s ) or n = 0 ; "" ;
+    Fallunterscheidung (
+      IstLeer ( a ) oder IstLeer ( s ) oder n = 0 ; "" ;
       Wiederhole ( " " ; ma * 2 ) & Wiederhole ( "█" ; md * 2 )
     )
 )
@@ -349,104 +336,55 @@ Let ( [
 
 ## F-14 bis F-16 · Pixelwerte — nur für die grafische Zeitachse
 
-Diese drei Formeln werden für die **Zeichenketten-Zeitachse nicht gebraucht**.
-Sie sind vorbereitet, falls die Zeitachse später mit echten Rechtecken gebaut
-werden soll (Doc 06 §5, Kasten). Wer die einfache Variante nimmt, überspringt
-sie — und spart auch die Beziehung B-22 und das Feld `ZeitachseBreitePx`.
+Für die Zeichenketten-Zeitachse **nicht nötig**. Wer die einfache Variante nimmt,
+überspringt sie und spart auch die Beziehung B-22 und das Feld
+`ZeitachseBreitePx`.
 
-## F-14 · Zeitachse, Soll-Balken — Kontext `Sections`, Zahl, nicht gespeichert
-
-`c_BandStartPx`:
+**F-14 · `Abschnitte::c_BandStartPx` / `c_BandBreitePx`**
 ```
-Let ( [
-    n = Sections_Projects::BogenLaengeMonate ;
-    w = Sections_zz_Utility::ZeitachseBreitePx
-  ] ;
-    Case ( n = 0 ; 0 ;
-      Round ( ( Sections::Band_Von_Monat - 1 ) / n * w ; 0 ) )
-)
+Setze ( [ n = Abschnitte_Projekte::BogenLaengeMonate ;
+          w = Abschnitte_Einstellungen::ZeitachseBreitePx ] ;
+  Fallunterscheidung ( n = 0 ; 0 ;
+    Runden ( ( Abschnitte::Band_Von_Monat - 1 ) / n * w ; 0 ) ) )
 ```
-
-`c_BandBreitePx`:
 ```
-Let ( [
-    n = Sections_Projects::BogenLaengeMonate ;
-    w = Sections_zz_Utility::ZeitachseBreitePx
-  ] ;
-    Case ( n = 0 ; 0 ;
-      Max ( 4 ; Round ( ( Sections::Band_Bis_Monat - Sections::Band_Von_Monat + 1 ) / n * w ; 0 ) ) )
-)
+Setze ( [ n = Abschnitte_Projekte::BogenLaengeMonate ;
+          w = Abschnitte_Einstellungen::ZeitachseBreitePx ] ;
+  Fallunterscheidung ( n = 0 ; 0 ;
+    Max ( 4 ; Runden ( ( Abschnitte::Band_Bis_Monat - Abschnitte::Band_Von_Monat + 1 ) / n * w ; 0 ) ) ) )
 ```
 
-## F-15 · Zeitachse, Ist-Balken — Kontext `Sections`
+**F-15 · `c_IstStartPx` / `c_IstBreitePx`** — analog mit `Ist_Start` und `Ist_Ende`.
 
-`c_IstStartPx`:
+**F-16 · `Projekte::c_HeutePx`**
 ```
-Let ( [
-    s = Sections_Projects::Startdatum ;
-    a = Sections::Ist_Start ;
-    n = Sections_Projects::BogenLaengeMonate ;
-    w = Sections_zz_Utility::ZeitachseBreitePx ;
-    ma = ( Year ( a ) - Year ( s ) ) * 12 + ( Month ( a ) - Month ( s ) )
-  ] ;
-    Case (
-      IsEmpty ( a ) or IsEmpty ( s ) or n = 0 ; 0 ;
-      Round ( ma / n * w ; 0 )
-    )
-)
-```
-
-`c_IstBreitePx`:
-```
-Let ( [
-    s = Sections_Projects::Startdatum ;
-    a = Sections::Ist_Start ;
-    e = If ( IsEmpty ( Sections::Ist_Ende ) ; Get ( CurrentDate ) ; Sections::Ist_Ende ) ;
-    n = Sections_Projects::BogenLaengeMonate ;
-    w = Sections_zz_Utility::ZeitachseBreitePx ;
-    dauer = ( Year ( e ) - Year ( a ) ) * 12 + ( Month ( e ) - Month ( a ) ) + 1
-  ] ;
-    Case (
-      IsEmpty ( a ) or IsEmpty ( s ) or n = 0 ; 0 ;
-      Max ( 4 ; Round ( dauer / n * w ; 0 ) )
-    )
-)
-```
-
-## F-16 · `Projects::c_HeutePx` — Zahl, nicht gespeichert
-
-```
-Let ( [
-    m = Projects::c_MonatImProjekt ;
-    n = Projects::BogenLaengeMonate ;
-    w = Projects_zz_Utility::ZeitachseBreitePx
-  ] ;
-    Case ( n = 0 ; 0 ; Round ( ( m - 1 ) / n * w ; 0 ) )
-)
+Setze ( [ m = Projekte::c_MonatImProjekt ;
+          n = Projekte::BogenLaengeMonate ;
+          w = Projekte_Einstellungen::ZeitachseBreitePx ] ;
+  Fallunterscheidung ( n = 0 ; 0 ; Runden ( ( m - 1 ) / n * w ; 0 ) ) )
 ```
 
 ---
 
-## F-17 · `People` — zwei Textfelder, nicht gespeichert
+## F-17 · `Personen` — zwei Textfelder, nicht gespeichert
 
-`c_Name`: `People::Vorname & " " & People::Nachname`
+`c_Name`: `Personen::Vorname & " " & Personen::Nachname`
 
-`c_Kurzname`: `Left ( People::Vorname ; 1 ) & ". " & People::Nachname`
+`c_Kurzname`: `Links ( Personen::Vorname ; 1 ) & ". " & Personen::Nachname`
 
-## F-18 · `Tasks::c_IstOffen` — Zahl, **gespeichert**
+## F-18 · `Aufgaben::c_IstOffen` — Zahl, **gespeichert**
 
 ```
-If ( Tasks::Status = "erledigt" ; 0 ; 1 )
+Wenn ( Aufgaben::Status = "erledigt" ; 0 ; 1 )
 ```
 
-## F-19 · `Projects::k_Eins` — Zahl, **gespeichert**
+## F-19 · `Projekte::k_Eins` — Zahl, **gespeichert**
 
 ```
 1
 ```
 
-Konstante für kartesische Bezüge und Portalfilter. Wirkt sinnlos, erspart aber
-mehrere Hilfsfelder.
+Konstante für kartesische Bezüge und Portalfilter.
 
 ---
 
@@ -457,47 +395,43 @@ Formeln ersetzen sieben zusätzliche Tabellenauftreten.
 
 **F-20.1 · Hinweise der eigenen Stufe** (Bildschirme 01, 02)
 ```
-Nudges::Stufe = Projects::g_MeineStufe
-and Nudges::Weggeklickt = 0
-and Nudges::Zurueckgezogen = 0
+Hinweise::Stufe = Projekte::g_MeineStufe
+und Hinweise::Weggeklickt = 0
+und Hinweise::Zurueckgezogen = 0
 ```
 
 **F-20.2 · Meine offenen Aufgaben** (Bildschirm 01)
 ```
-Tasks::_fkPersonID = Projects::g_MeinePersonID
-and Tasks::Status ≠ "erledigt"
+Aufgaben::_fkPersonID = Projekte::g_MeinePersonID
+und Aufgaben::Status ≠ "erledigt"
 ```
 
 **F-20.3 · Nur der laufende Abschnitt** (Bildschirm 01)
 ```
-Sections::Status = "läuft"
+Abschnitte::Status = "läuft"
 ```
 
 **F-20.4 · Nur zutreffende Schritte** (Bildschirme 01, 04)
 ```
-Steps::TrifftNichtZu = 0
+Schritte::TrifftNichtZu = 0
 ```
 
 **F-20.5 · Checkliste des laufenden Abschnitts** (Bildschirm 01)
 ```
-ChecklistItems::TrifftNichtZu = 0
-and ChecklistItems::_fkSectionID = Projects::s_AktuelleSectionID
+Punkte::TrifftNichtZu = 0
+und Punkte::_fkAbschnittID = Projekte::s_AktuelleAbschnittID
 ```
 
 **F-20.6 · Überfällige Aufgaben** (Bildschirm 02)
 ```
-Tasks::Termin < Get ( CurrentDate )
-and Tasks::Status ≠ "erledigt"
+Aufgaben::Termin < Hole ( AktuellesDatum )
+und Aufgaben::Status ≠ "erledigt"
 ```
 
-**F-20.7 · Offene Ergebnisse eines Abschnitts** (Bildschirm 04)
+**F-20.7 · Noch nicht freigegebene Ergebnisse** (Bildschirm 04)
 ```
-Deliverables::Status ≠ "freigegeben"
+Ergebnisse::Status ≠ "freigegeben"
 ```
-
-> F-20.5 braucht das zusätzliche Feld `Projects::s_AktuelleSectionID` (Text),
-> gesetzt von Skript S-04. Es ist der einzige Wert, den Bildschirm 01 nicht aus
-> den bereits vorhandenen Feldern ableiten kann.
 
 ---
 
@@ -508,13 +442,39 @@ Alarmoptik.
 
 | Objekt | Bedingung | Formatierung |
 |---|---|---|
-| Zustandstext, Bildschirm 02 | `Projects::s_Zustand = "stockt"` | Textfarbe `#B8860B` (gedämpftes Gold) |
-| Zustandstext | `Projects::s_Zustand = "ruht"` | Textfarbe `#9A9A9A` |
-| Zustandstext | `Projects::s_Zustand = "abgeschlossen"` | Textfarbe `#4A7C59` |
-| Checklistenzeile | `ChecklistItems::IstUeberschrift = 1` | Fett, Hintergrund `#F2F2F2`, Kontrollkästchen ausblenden |
-| Checklistenzeile | `ChecklistItems::Erledigt = 1` | Textfarbe `#8A8A8A` |
-| Checklistenzeile | `ChecklistItems::TrifftNichtZu = 1` | Textfarbe `#C0C0C0`, durchgestrichen |
-| Abschnittszeile, Bildschirm 03 | `Sections::Status = "läuft"` | Fett |
-| Kasten „Worauf zu schauen ist" | `Projects::g_MeineStufe ≠ "Leitung"` | *Objekt ▸ Ausblenden wenn* — nicht bedingte Formatierung |
+| Zustandstext, Bildschirm 02 | `Projekte::s_Zustand = "stockt"` | Textfarbe `#B8860B` (gedämpftes Gold) |
+| Zustandstext | `Projekte::s_Zustand = "ruht"` | Textfarbe `#9A9A9A` |
+| Zustandstext | `Projekte::s_Zustand = "abgeschlossen"` | Textfarbe `#4A7C59` |
+| Checklistenzeile | `Punkte::IstUeberschrift = 1` | Fett, Hintergrund `#F2F2F2` |
+| Checklistenzeile | `Punkte::Erledigt = 1` | Textfarbe `#8A8A8A` |
+| Checklistenzeile | `Punkte::TrifftNichtZu = 1` | Textfarbe `#C0C0C0`, durchgestrichen |
+| Abschnittszeile, Bildschirm 03 | `Abschnitte::Status = "läuft"` | Fett |
+| Kasten „Worauf zu schauen ist" | `Projekte::g_MeineStufe ≠ "Leitung"` | *Objekt ▸ Ausblenden wenn* — nicht bedingte Formatierung |
 
 **Nirgends Rot.** Verzug erscheint als verschobenes Datum, nicht als Warnfarbe.
+
+---
+
+## F-24 · Zugriffsformeln der Rechtesets
+
+Diese beiden Formeln stehen **nicht** in Feldern, sondern im Rechteset unter
+*Datensätze ▸ Angepasste Zugriffsrechte*. Vollständige Anleitung in
+[`07-rechte-und-mehrbenutzer.md`](07-rechte-und-mehrbenutzer.md).
+
+**F-24.1 · Tabelle `Projekte`, Rechteset `Forschende`**
+```
+nicht IstLeer ( FilterWerte ( Projekte::s_BeteiligtIDs ; Projekte::g_MeinePersonID ) )
+```
+
+**F-24.2 · Alle übrigen Datentabellen, Rechteset `Forschende`**
+```
+nicht IstLeer ( FilterWerte ( <Tabelle>::s_ZugriffIDs ; Projekte::g_MeinePersonID ) )
+```
+
+`FilterWerte` vergleicht zwei zeilenweise Listen und liefert die Schnittmenge.
+Ist die leer, gehört die Person nicht zum Projekt und sieht den Datensatz nicht.
+
+> Beide Formeln lesen **nur lokale Felder plus ein globales Feld**. Das ist
+> Absicht: Zugriffsformeln werden für jeden Datensatz einzeln ausgewertet.
+> Ein `AuswerteSQL` oder ein Bezug an dieser Stelle wäre bei jeder Suche spürbar
+> langsam und im Verhalten schwer vorhersagbar.

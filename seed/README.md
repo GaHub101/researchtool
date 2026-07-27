@@ -12,32 +12,33 @@ Datei ▸ Datensätze importieren ▸ Datei…
   ☑ Erste Datenzeile enthält Feldnamen
 ```
 
-Vollständige Anleitung: [`../docs/02-bauunterlagen/07-rechte-server-import.md`](../docs/02-bauunterlagen/07-rechte-server-import.md)
+Vollständige Anleitung: [`../docs/02-bauunterlagen/08-import-server-test.md`](../docs/02-bauunterlagen/08-import-server-test.md)
 
 ## Dateien mit Inhalt
 
 | Datei | Zeilen | Inhalt |
 |---|---:|---|
-| `SectionTemplates.tab` | 5 | Die fünf Abschnitte des 24-Monats-Bogens — Leitfrage, Monatsbereiche, Zweck, Stolpersteine, Hinweise für beide Stufen |
-| `StepTemplates.tab` | 13 | Die Schritte unter den Abschnitten, ebenfalls mit beiden Textfassungen |
-| `ChecklistTemplates.tab` | 59 | Alle Checklistenpunkte, jeder mit Erklärung |
-| `Roles.tab` | 7 | Rollenbezeichnungen |
-| `Nudgetexte.tab` | 7 | Die sieben Hinweisregeln mit Bedingung und beiden Textfassungen |
+| `VorlageAbschnitte.tab` | 5 | Die fünf Abschnitte des 24-Monats-Bogens — Leitfrage, Monatsbereiche, Zweck, Stolpersteine, Hinweise für beide Stufen |
+| `VorlageSchritte.tab` | 13 | Die Schritte unter den Abschnitten, ebenfalls mit beiden Textfassungen |
+| `VorlagePunkte.tab` | 59 | Alle Checklistenpunkte, jeder mit Erklärung |
+| `Rollen.tab` | 7 | Rollenbezeichnungen |
+| `Hinweistexte.tab` | 7 | Die sieben Hinweisregeln mit Bedingung und beiden Textfassungen |
 
 Zusammen sind das **84 redaktionelle Einträge** — die vollständige Wissensschicht.
 Sie ist der Teil des Systems, der ohne Vorarbeit Wochen kostet, und der Teil, der
 sich am leichtesten weiterentwickeln lässt: Alles liegt als Daten in der
 Datenbank, nichts im Programm.
 
-`Nudgetexte.tab` ist keine Tabelle des laufenden Systems, sondern eine Vorlage —
+`Hinweistexte.tab` ist keine Tabelle des laufenden Systems, sondern eine Vorlage —
 die Texte werden beim Bau in Skript S-05 eingetragen. Als Nachschlagetabelle
 importiert schadet sie nicht.
 
 ## Dateien nur mit Kopfzeile
 
-`Projects` · `People` · `ProjectPeople` · `Sections` · `Steps` ·
-`ChecklistItems` · `Deliverables` · `Tasks` · `Documents` · `DocumentVersions` ·
-`Risks` · `Manuscripts` · `Submissions` · `Nudges` · `ActivityLog` · `zz_Utility`
+`Projekte` · `Personen` · `Projektbeteiligte` · `Abschnitte` · `Schritte` ·
+`Punkte` · `Ergebnisse` · `Aufgaben` · `Dokumente` · `Dokumentversionen` ·
+`Risiken` · `Manuskripte` · `Einreichungen` · `Hinweise` · `Verlauf` ·
+`zz_Einstellungen`
 
 Sie enthalten keine Datensätze, erzeugen aber Tabelle und Feldstruktur.
 
@@ -47,6 +48,10 @@ Alle Felder stehen zunächst auf **Text**. Was zu korrigieren ist und welche
 Felder von Hand zu ergänzen sind — Berechnungen, Container, globale Felder —
 steht in [`../docs/02-bauunterlagen/02-tabellen-und-felder.md`](../docs/02-bauunterlagen/02-tabellen-und-felder.md),
 Abschnitt 22.
+
+Jede Datentabelle trägt ein Feld `s_ZugriffIDs`. Es steuert, wer den Datensatz
+sehen darf, und wird von Skript S-11 gefüllt — siehe
+[`../docs/02-bauunterlagen/07-rechte-und-mehrbenutzer.md`](../docs/02-bauunterlagen/07-rechte-und-mehrbenutzer.md).
 
 ## Texte ändern
 

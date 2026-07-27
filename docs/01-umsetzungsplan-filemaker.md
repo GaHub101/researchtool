@@ -65,15 +65,54 @@ Für eine unerfahrene Betreuung ist das der schwierigste Teil: zu wissen, worauf
 man bei einem Projekt in Monat 9 überhaupt schauen sollte. Genau dafür hat jeder
 Abschnitt einen hinterlegten Betreuungshinweis.
 
+### Was die Stufen unterscheidet
+
+**Forschende sehen ihre eigenen Projekte. Die Forschungsleitung sieht alles.**
+
+| | Forschende (6–9 Personen) | Forschungsleitung (2–3 Personen) |
+|---|---|---|
+| Eigene Projekte | sehen, bearbeiten | sehen, bearbeiten |
+| Fremde Projekte | **nicht sichtbar** | sehen, bearbeiten |
+| Gesamtübersicht | nein | ja |
+| Besprechungsvorschläge | nein | ja |
+| Projekt anlegen, Beteiligte zuordnen | nein | ja |
+| Hinweise | Fassung *Forschende* | Fassung *Leitung* |
+
+„Eigenes Projekt" heißt: Es existiert ein Eintrag, der die Person mit dem Projekt
+verbindet. Damit vergibt die Leitung Sichtbarkeit.
+
+Die Trennung liegt im **Rechtesystem**, nicht in Suchen oder Anzeigefiltern — sie
+greift damit auch beim Export und in selbstgebauten Ansichten.
+
+> **Widerspricht das dem Leitgedanken?** Nein. „Nichts blockiert" gilt dem
+> *Arbeitsablauf*: kein Statuswechsel wird verweigert, keine Phase gesperrt, kein
+> Abschluss verhindert. Es gilt nicht der Frage, wer wessen Projekt einsieht. Ein
+> unerfahrener Forschender, der Bewertungen und Besprechungsnotizen über fremde
+> Projekte mitlesen kann, ist kein offenes System, sondern ein unangenehmes.
+
 ### Technische Umsetzung
 
-Zwei Rechtesets, `Forschende` und `Forschungsleitung`, plus ein rein technisches
-Administrationskonto für Schema und Pflege der Texte. Der Unterschied liegt
-weniger in den Rechten als in den **Einstiegsseiten und den angezeigten Texten** —
-beide sehen dieselben Daten, aber nicht dieselbe Aufbereitung.
+Drei Rechtesets: `Forschende`, `Forschungsleitung` und ein Administrationskonto
+für Schema und Pflege der Texte.
 
-Forschende können alle Projekte lesen. Abschottung würde dem Zweck
-widersprechen: voneinander abschauen ist beim ersten Projekt hilfreich.
+Die Sichttrennung trägt ein Textfeld je Datensatz mit der Liste der beteiligten
+Personen, verglichen gegen die Personen-ID der angemeldeten Sitzung. Ein Skript
+pflegt diese Listen; die Rechtesets werten sie aus.
+
+### Mehrbenutzerbetrieb
+
+Acht bis zwölf gleichzeitige Anwender sind für FileMaker Server eine kleine Last.
+Die relevanten Punkte sind nicht Leistung, sondern Verhalten:
+
+- **Datensatzsperren:** Zwei Personen an verschiedenen Checklistenpunkten
+  desselben Abschnitts stören einander nicht — das sind verschiedene Datensätze.
+  Nur derselbe Datensatz kollidiert, und das ist selten.
+- **Über Nacht offen gelassene Datensätze** blockieren den nächtlichen Serverlauf.
+  Gegenmittel: Clients nach drei Stunden Leerlauf trennen, plus Fehlerbehandlung
+  im Skript, die das betroffene Projekt überspringt statt abzubrechen.
+- **Globale Felder gelten je Sitzung** — genau darauf beruht die
+  Zugriffstrennung. Umkehrschluss: Gemeinsame Einstellungen liegen in einer
+  eigenen Tabelle, niemals in globalen Feldern.
 
 ---
 
@@ -224,13 +263,14 @@ konfliktfrei. Zusätzlich ein lesbarer Projektcode (`2026-014`) für Menschen.
 
 ### 6.4 Namenskonvention
 ```
-__pkProjectID      Primärschlüssel
-_fkProjectID       Fremdschlüssel
+__pkProjektID      Primärschlüssel
+_fkProjektID       Fremdschlüssel
 Status             normales Feld
 c_MonatImProjekt   Berechnungsfeld (nicht gespeichert)
-s_MonatImProjekt   per Script gesetzter, gespeicherter Wert
-g_CurrentProjectID globales Feld
-zz_Utility         Hilfstabelle
+s_MonatImProjekt   per Skript gesetzter, gespeicherter Wert
+s_ZugriffIDs       trägt die Zugriffstrennung
+g_MeineStufe       globales Feld (gilt je Sitzung)
+zz_Einstellungen   Hilfstabelle
 ```
 
 ### 6.5 Checklistenpunkte sind Datensätze, keine Textfelder
@@ -269,42 +309,42 @@ im Wartungsfenster.
 ### 7.1 Tabellen
 
 **Stammdaten**
-- `Projects` — Projektakte. Pflicht: Titel und Startdatum. Alles andere optional.
+- `Projekte` — Projektakte. Pflicht: Titel und Startdatum. Alles andere optional.
   Die Art des Vorhabens ist ein rein beschreibendes Feld ohne Steuerungswirkung.
-- `People`, `Roles`, `ProjectPeople` — wer ist mit welcher Rolle beteiligt
+- `Personen`, `Rollen`, `Projektbeteiligte` — wer ist mit welcher Rolle beteiligt
 
 **Ablauf**
-- `SectionTemplates` — die fünf Abschnitte mit Erklärtexten und Regeldauern
-- `StepTemplates` — die dreizehn Schritte darunter
-- `Sections` — Abschnitte des konkreten Projekts, mit eigenen Terminen
-- `Steps` — Schritte des konkreten Projekts, abwählbar
-- `ChecklistItems` — Checklistenpunkte, Vorlage und Instanz
+- `VorlageAbschnitte` — die fünf Abschnitte mit Erklärtexten und Regeldauern
+- `VorlageSchritte` — die dreizehn Schritte darunter
+- `Abschnitte` — die Abschnitte des konkreten Projekts, mit eigenen Terminen
+- `Schritte` — die Schritte des Projekts, abwählbar
+- `Punkte` — Checklistenpunkte, Vorlage und Instanz
 
 **Arbeitsebene**
-- `Deliverables` — was am Ende eines Abschnitts vorliegen sollte
-- `Tasks` — einzelne Aufgaben, an Abschnitt, Schritt oder direkt am Projekt
+- `Ergebnisse` — was am Ende eines Abschnitts vorliegen sollte
+- `Aufgaben` — an Abschnitt, Schritt, Ergebnis oder direkt am Projekt
 
 **Nachweise und Steuerung**
-- `Documents` + `DocumentVersions`
-- `Risks` — was gerade hakt
-- `Manuscripts` + `Submissions` — Publikationsstand
-- `Nudges` — erzeugte Hinweise, mit Stufe und „weggeklickt"-Kennzeichen
-- `ActivityLog` — Verlaufsprotokoll
-- `zz_Utility` — globale Felder und Einstellungen
+- `Dokumente` + `Dokumentversionen`
+- `Risiken` — was gerade hakt
+- `Manuskripte` + `Einreichungen` — Publikationsstand
+- `Hinweise` — erzeugte Hinweise, mit Stufe und „weggeklickt"-Kennzeichen
+- `Verlauf` — das Verlaufsprotokoll
+- `zz_Einstellungen` — gemeinsame Einstellungen
 
-Kein `ProjectTypes` mehr — es gibt nur ein Ablaufmodell.
+Kein Tabelle für Vorhabentypen — es gibt nur ein Ablaufmodell.
 
 ### 7.2 Kernbeziehungen
 
 ```
-Projects ──< Sections ──< Steps ──< ChecklistItems
-    │            └──< Deliverables ──< Tasks
-    ├──< ProjectPeople >── People >── Roles
-    ├──< Documents ──< DocumentVersions
-    ├──< Risks
-    ├──< Manuscripts ──< Submissions
-    ├──< Nudges
-    └──< ActivityLog
+Projekte ──< Abschnitte ──< Schritte ──< Punkte
+    │             └──< Ergebnisse ──< Aufgaben
+    ├──< Projektbeteiligte >── Personen >── Rollen
+    ├──< Dokumente ──< Dokumentversionen
+    ├──< Risiken
+    ├──< Manuskripte ──< Einreichungen
+    ├──< Hinweise
+    └──< Verlauf
 ```
 
 Aufgaben hängen an einem Abschnitt, einem Schritt oder direkt am Projekt — alle
@@ -338,7 +378,7 @@ kostet. Pro Abschnitt und pro Schritt hinterlegt:
 Die letzten beiden Punkte sind die Umsetzung der zwei Stufen. Derselbe
 Sachverhalt, zweimal formuliert.
 
-Diese Inhalte liegen als **Daten** in `SectionTemplates` und `StepTemplates`,
+Diese Inhalte liegen als **Daten** in `VorlageAbschnitte` und `VorlageSchritte`,
 nicht im Programmcode. Sie sind ohne Entwicklungsaufwand pflegbar und wachsen mit
 der eigenen Erfahrung.
 
@@ -399,17 +439,17 @@ Server*.
 ## 11. Bau-Reihenfolge
 
 ### Etappe 0 — Fundament
-Datei, Namenskonvention, Hilfstabelle, Konten und die zwei Rechtesets plus
-Administration, Serverablage, Sicherungsplan.
+Datei, Namenskonvention, Hilfstabelle, Konten und die drei Rechtesets samt
+Zugriffstrennung, Serverablage, Sicherungsplan.
 *Ergebnis:* Datei liegt auf dem Server, Anmeldung funktioniert.
 
 ### Etappe 1 — Projekte und Personen
-`Projects`, `People`, `Roles`, `ProjectPeople`, `ActivityLog`. Projektakte mit
+`Projekte`, `Personen`, `Rollen`, `Projektbeteiligte`, `Verlauf`. Projektakte mit
 Kopfbereich und Beteiligten. Schnellanlage: Titel und Startdatum, fertig.
 *Ergebnis:* Projekte lassen sich anlegen und Beteiligte zuordnen.
 
 ### Etappe 2 — Abschnitte, Schritte und Zeitachse
-`SectionTemplates`, `StepTemplates`, `Sections`, `Steps`, `ChecklistItems`. Die
+`VorlageAbschnitte`, `VorlageSchritte`, `Abschnitte`, `Schritte`, `Punkte`. Die
 fünf Abschnitte und dreizehn Schritte als Vorlage, Terminberechnung aus dem
 Startdatum, Standortzeile, Fortschreibung des voraussichtlichen Endes.
 *Ergebnis:* Ein neues Projekt bekommt seinen 24-Monats-Bogen; jede Projektakte
@@ -428,23 +468,23 @@ Forschungsleitung). Anzeige in der Abschnittsansicht.
 beide Zielgruppen sinnvoll benutzbar.
 
 ### Etappe 5 — Ergebnisse und Aufgaben
-`Deliverables`, `Tasks`, Aufgabenliste.
+`Ergebnisse`, `Aufgaben`, Aufgabenliste.
 *Ergebnis:* Aufgaben sind zuweisbar, Fortschritt wird sichtbar.
 
 ### Etappe 6 — Dokumente
-`Documents` + `DocumentVersions`, Ablage mit External Secure Storage, Historie.
+`Dokumente` + `Dokumentversionen`, Ablage mit externer Containersicherung, Historie.
 *Ergebnis:* Eine neue Version ergänzt die alte, statt sie zu ersetzen.
 
 ### Etappe 7 — Risiken und Blocker
-`Risks`, schlank: was hakt, wer kümmert sich, seit wann.
+`Risiken`, schlank: was hakt, wer kümmert sich, seit wann.
 *Ergebnis:* Stockende Projekte sind in der Leitungsansicht erkennbar.
 
 ### Etappe 8 — Hinweis-Schicht
-`Nudges`, die Regeln aus Kapitel 5, Wegklick-Mechanik, Hinweisspalte.
+`Hinweise`, die Regeln aus Kapitel 5, Wegklick-Mechanik, Hinweisspalte.
 *Ergebnis:* Das System meldet sich von selbst — und lässt sich beruhigen.
 
 ### Etappe 9 — Publikationsstand
-`Manuscripts`, `Submissions` mit den Statuswerten aus §9.11, ohne Zeitdruck
+`Manuskripte`, `Einreichungen` mit den Statuswerten aus §9.11, ohne Zeitdruck
 jenseits von Monat 24.
 *Ergebnis:* Der Weg von Draft bis Published ist abbildbar.
 
